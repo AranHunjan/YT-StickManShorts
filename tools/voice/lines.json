@@ -1,0 +1,31 @@
+{
+  "_note": "Voice bake-off script. [tags] in square brackets are only used by Chatterbox Turbo; other engines strip them.",
+  "voices": {
+    "kip": {
+      "design": "Young adult male voice in his late twenties. Bright, warm and energetic, slightly raspy, fast-talking and very expressive. Friendly, natural American accent.",
+      "kokoro": ["am_puck", "am_michael", "am_fenrir", "am_echo"],
+      "reference_text": "Hey, it's Kip. Every day I find out something wild about the stuff we see all the time, and honestly, it never gets old. Let's see what today's story is."
+    },
+    "dex": {
+      "design": "Adult male voice in his late thirties. Low, calm and smooth, with a dry deadpan delivery and precise articulation. Subtle British accent.",
+      "kokoro": ["bm_george", "bm_lewis", "am_onyx"],
+      "reference_text": "This is Dex. I check the facts, I bring the sources, and I try very hard not to be impressed. Today, I will probably fail at that."
+    }
+  },
+  "delivery": {
+    "excited":   {"exaggeration": 0.75, "cfg_weight": 0.3,  "kokoro_speed": 1.08, "instruct": "excited, energetic, fast-paced, smiling while talking"},
+    "mindblown": {"exaggeration": 0.95, "cfg_weight": 0.25, "kokoro_speed": 1.0,  "instruct": "utterly shocked and amazed, loud, voice rising in disbelief"},
+    "whisper":   {"exaggeration": 0.35, "cfg_weight": 0.5,  "kokoro_speed": 0.92, "instruct": "whispering conspiratorially, quiet and secretive"},
+    "amused":    {"exaggeration": 0.6,  "cfg_weight": 0.4,  "kokoro_speed": 1.02, "instruct": "laughing a little, delighted and amused"},
+    "deadpan":   {"exaggeration": 0.25, "cfg_weight": 0.5,  "kokoro_speed": 0.95, "instruct": "deadpan, flat, dry and unimpressed"},
+    "dry":       {"exaggeration": 0.35, "cfg_weight": 0.5,  "kokoro_speed": 0.95, "instruct": "dry and sarcastic, with a tired, slightly amused sigh"}
+  },
+  "lines": [
+    {"id": "01_kip_hook",    "speaker": "kip", "delivery": "excited",   "text": "Okay. You know the lead in your pencil? There is no lead in it. At all!"},
+    {"id": "02_dex_card",    "speaker": "dex", "delivery": "deadpan",   "text": "Actually, it's graphite. Mixed with clay. Two sources, Kip."},
+    {"id": "03_kip_shock",   "speaker": "kip", "delivery": "mindblown", "text": "[gasp] Wait. What? Excuse me?!"},
+    {"id": "04_kip_whisper", "speaker": "kip", "delivery": "whisper",   "text": "And here's the part nobody tells you..."},
+    {"id": "05_kip_laugh",   "speaker": "kip", "delivery": "amused",    "text": "[laugh] Okay, that is actually amazing."},
+    {"id": "06_dex_dry",     "speaker": "dex", "delivery": "dry",       "text": "[sigh] You say that every single day."}
+  ]
+}

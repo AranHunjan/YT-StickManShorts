@@ -1,0 +1,7 @@
+node_modules/
+packages/*/out/
+out/
+.venvs/
+__pycache__/
+*.pyc
+.env

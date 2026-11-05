@@ -613,15 +613,33 @@ docs/
 
 ---
 
-## 14. Open decisions
+## 14. Decisions (2026-11-05)
 
-1. **Niche:** go with the recommended "wild true stories behind everyday things" across science and history, or something narrower?
-2. **Character:** name, personality, sidekick, and signature look.
-3. **Human time:** can someone commit about 15 to 30 minutes a day, every day?
-4. **Budget:** decided. $0 cash until the first revenue; only the existing Claude subscription.
-5. **Hardware:** what is in our computer (OS, GPU model and VRAM, RAM)? This decides the voice model tier and how fast renders are.
-6. **Stack:** TypeScript plus Remotion for animation, Python for voice and FFmpeg (recommended)?
-7. **Languages:** English only at first (recommended), translated channels later?
+| Topic | Decision |
+|---|---|
+| Niche | **Wild true stories behind everyday things**: science, history and nature |
+| Characters | Claude designs them; the owner reviews every iteration. v1 is **Kip and Dex**, see [CHARACTERS.md](CHARACTERS.md) and `docs/review/` |
+| Human time | The owner reviews everything, daily |
+| Budget | $0 cash until the first revenue; only the existing Claude subscription. Budget gets added if the channel takes off |
+| Hosting | Everything runs on the owner's PC |
+| Stack | TypeScript + Remotion for animation; Python for voice and FFmpeg |
+| Languages | English first (still open: translated channels later) |
+
+### Production PC
+
+| Part | Spec | What it means for us |
+|---|---|---|
+| OS | Windows, 64-bit | PowerShell setup scripts; `uv` manages Python |
+| CPU | AMD Ryzen 7 3700X (8 cores) | Remotion renders a 60 s episode in a few minutes |
+| GPU | NVIDIA RTX 2070 SUPER, 8 GB | Runs Chatterbox, Chatterbox Turbo, Qwen3-TTS 1.7B (float16; Turing has no fast bfloat16) and Kokoro locally |
+| RAM | 16 GB | Fine. Run one voice model at a time (the bake-off already does this) |
+| Free disk | ~110 GB | Models need ~10 GB; keep at least 30 GB free for renders |
+
+### Still open
+
+1. **Voice:** pick the winner of the bake-off (`tools/voice/`).
+2. **Character v1 review:** feedback on `docs/review/character-sheet-v1.png` and `rig-test-v1.mp4`.
+3. **Channel name:** check that "Stick to the Facts" (or a backup) is free on YouTube, TikTok and Instagram.
 
 ---
 
