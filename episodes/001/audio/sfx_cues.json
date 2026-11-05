@@ -1,0 +1,97 @@
+[
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/pop.wav",
+    "at": 0.43,
+    "gain_db": -8
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/pop.wav",
+    "at": 6.026,
+    "gain_db": -8
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/pop.wav",
+    "at": 6.735,
+    "gain_db": -8
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/pop.wav",
+    "at": 7.444,
+    "gain_db": -8
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/boing.wav",
+    "at": 8.153,
+    "gain_db": -9
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/thud.wav",
+    "at": 11.224,
+    "gain_db": -6
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/whoosh.wav",
+    "at": 14.495,
+    "gain_db": -12
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/tick.wav",
+    "at": 15.582,
+    "gain_db": -8
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/whoosh.wav",
+    "at": 15.898,
+    "gain_db": -12
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/ding.wav",
+    "at": 24.872,
+    "gain_db": -10
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/pop.wav",
+    "at": 30.751,
+    "gain_db": -9
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/pop.wav",
+    "at": 31.198,
+    "gain_db": -9
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/pop.wav",
+    "at": 31.646,
+    "gain_db": -9
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/boing.wav",
+    "at": 33.044,
+    "gain_db": -9
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/pop.wav",
+    "at": 35.97,
+    "gain_db": -8
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/thud.wav",
+    "at": 44.392,
+    "gain_db": -5
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/pop.wav",
+    "at": 47.764,
+    "gain_db": -6
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/sparkle.wav",
+    "at": 50.598,
+    "gain_db": -8
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/whoosh.wav",
+    "at": 53.517,
+    "gain_db": -12
+  }
+]

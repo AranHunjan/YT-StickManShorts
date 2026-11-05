@@ -1,0 +1,933 @@
+{
+  "duration": 56.218,
+  "lines": [
+    {
+      "id": "L01",
+      "speaker": "kip",
+      "delivery": "curious",
+      "start": 0.35,
+      "end": 4.329,
+      "text": "Hey Dex... why does Heinz ketchup say *{57|fifty-seven}* on the bottle?",
+      "caption": "",
+      "words": [
+        {
+          "w": "Hey",
+          "hi": false,
+          "s": 0.35,
+          "e": 0.45
+        },
+        {
+          "w": "Dex...",
+          "hi": false,
+          "s": 0.45,
+          "e": 1.31
+        },
+        {
+          "w": "why",
+          "hi": false,
+          "s": 1.31,
+          "e": 1.41
+        },
+        {
+          "w": "does",
+          "hi": false,
+          "s": 1.41,
+          "e": 1.55
+        },
+        {
+          "w": "Heinz",
+          "hi": false,
+          "s": 1.55,
+          "e": 2.05
+        },
+        {
+          "w": "ketchup",
+          "hi": false,
+          "s": 2.05,
+          "e": 2.33
+        },
+        {
+          "w": "say",
+          "hi": false,
+          "s": 2.33,
+          "e": 2.75
+        },
+        {
+          "w": "57",
+          "hi": true,
+          "s": 2.75,
+          "e": 3.59
+        },
+        {
+          "w": "on",
+          "hi": false,
+          "s": 3.59,
+          "e": 3.73
+        },
+        {
+          "w": "the",
+          "hi": false,
+          "s": 3.73,
+          "e": 3.83
+        },
+        {
+          "w": "bottle?",
+          "hi": false,
+          "s": 3.83,
+          "e": 4.05
+        }
+      ]
+    },
+    {
+      "id": "L02",
+      "speaker": "kip",
+      "delivery": "confident",
+      "start": 4.609,
+      "end": 9.334,
+      "text": "Wait, don't tell me. It's {57|fifty-seven} *tomatoes.* Squished into every bottle.",
+      "caption": "",
+      "words": [
+        {
+          "w": "Wait,",
+          "hi": false,
+          "s": 4.609,
+          "e": 4.769
+        },
+        {
+          "w": "don't",
+          "hi": false,
+          "s": 4.969,
+          "e": 5.229
+        },
+        {
+          "w": "tell",
+          "hi": false,
+          "s": 5.229,
+          "e": 5.389
+        },
+        {
+          "w": "me.",
+          "hi": false,
+          "s": 5.389,
+          "e": 5.569
+        },
+        {
+          "w": "It's",
+          "hi": false,
+          "s": 6.049,
+          "e": 6.129
+        },
+        {
+          "w": "57",
+          "hi": false,
+          "s": 6.129,
+          "e": 6.829
+        },
+        {
+          "w": "tomatoes.",
+          "hi": true,
+          "s": 6.829,
+          "e": 7.029
+        },
+        {
+          "w": "Squished",
+          "hi": false,
+          "s": 7.889,
+          "e": 8.189
+        },
+        {
+          "w": "into",
+          "hi": false,
+          "s": 8.189,
+          "e": 8.389
+        },
+        {
+          "w": "every",
+          "hi": false,
+          "s": 8.389,
+          "e": 8.709
+        },
+        {
+          "w": "bottle.",
+          "hi": false,
+          "s": 8.709,
+          "e": 9.109
+        }
+      ]
+    },
+    {
+      "id": "L03",
+      "speaker": "dex",
+      "delivery": "teasing",
+      "start": 9.614,
+      "end": 14.215,
+      "text": "Kip... no. That number's basically *made up.* And it hides a *trick.*",
+      "caption": "",
+      "words": [
+        {
+          "w": "Kip...",
+          "hi": false,
+          "s": 9.614,
+          "e": 10.154
+        },
+        {
+          "w": "no.",
+          "hi": false,
+          "s": 10.154,
+          "e": 10.294
+        },
+        {
+          "w": "That",
+          "hi": false,
+          "s": 11.054,
+          "e": 11.054
+        },
+        {
+          "w": "number's",
+          "hi": false,
+          "s": 11.054,
+          "e": 11.554
+        },
+        {
+          "w": "basically",
+          "hi": false,
+          "s": 11.554,
+          "e": 11.954
+        },
+        {
+          "w": "made",
+          "hi": true,
+          "s": 11.954,
+          "e": 12.294
+        },
+        {
+          "w": "up.",
+          "hi": true,
+          "s": 12.294,
+          "e": 12.554
+        },
+        {
+          "w": "And",
+          "hi": false,
+          "s": 13.194,
+          "e": 13.234
+        },
+        {
+          "w": "it",
+          "hi": false,
+          "s": 13.234,
+          "e": 13.314
+        },
+        {
+          "w": "hides",
+          "hi": false,
+          "s": 13.314,
+          "e": 13.554
+        },
+        {
+          "w": "a",
+          "hi": false,
+          "s": 13.554,
+          "e": 13.734
+        },
+        {
+          "w": "trick.",
+          "hi": true,
+          "s": 13.734,
+          "e": 13.974
+        }
+      ]
+    },
+    {
+      "id": "L04",
+      "speaker": "kip",
+      "delivery": "stunned",
+      "start": 14.495,
+      "end": 15.302,
+      "text": "Made up?!",
+      "caption": "",
+      "words": [
+        {
+          "w": "Made",
+          "hi": false,
+          "s": 14.495,
+          "e": 14.815
+        },
+        {
+          "w": "up?!",
+          "hi": false,
+          "s": 14.815,
+          "e": 15.275
+        }
+      ]
+    },
+    {
+      "id": "L05",
+      "speaker": "dex",
+      "delivery": "warm",
+      "start": 15.582,
+      "end": 21.892,
+      "text": "In {1896|eighteen ninety-six}, Henry Heinz saw an ad on a train: *{21|twenty-one} styles* of shoes.",
+      "caption": "",
+      "words": [
+        {
+          "w": "In",
+          "hi": false,
+          "s": 15.582,
+          "e": 15.662
+        },
+        {
+          "w": "1896,",
+          "hi": false,
+          "s": 15.662,
+          "e": 17.082
+        },
+        {
+          "w": "Henry",
+          "hi": false,
+          "s": 17.082,
+          "e": 17.502
+        },
+        {
+          "w": "Heinz",
+          "hi": false,
+          "s": 17.502,
+          "e": 18.082
+        },
+        {
+          "w": "saw",
+          "hi": false,
+          "s": 18.082,
+          "e": 18.362
+        },
+        {
+          "w": "an",
+          "hi": false,
+          "s": 18.362,
+          "e": 18.502
+        },
+        {
+          "w": "ad",
+          "hi": false,
+          "s": 18.502,
+          "e": 18.762
+        },
+        {
+          "w": "on",
+          "hi": false,
+          "s": 18.762,
+          "e": 19.002
+        },
+        {
+          "w": "a",
+          "hi": false,
+          "s": 19.002,
+          "e": 19.122
+        },
+        {
+          "w": "train:",
+          "hi": false,
+          "s": 19.122,
+          "e": 19.422
+        },
+        {
+          "w": "21",
+          "hi": true,
+          "s": 19.422,
+          "e": 20.642
+        },
+        {
+          "w": "styles",
+          "hi": true,
+          "s": 20.642,
+          "e": 20.882
+        },
+        {
+          "w": "of",
+          "hi": false,
+          "s": 20.882,
+          "e": 21.242
+        },
+        {
+          "w": "shoes.",
+          "hi": false,
+          "s": 21.242,
+          "e": 21.502
+        }
+      ]
+    },
+    {
+      "id": "L06",
+      "speaker": "dex",
+      "delivery": "delighted",
+      "start": 22.172,
+      "end": 27.572,
+      "text": "He loved it. So he gave his company a number too: *{57|fifty-seven} varieties.*",
+      "caption": "",
+      "words": [
+        {
+          "w": "He",
+          "hi": false,
+          "s": 22.172,
+          "e": 22.252
+        },
+        {
+          "w": "loved",
+          "hi": false,
+          "s": 22.252,
+          "e": 22.592
+        },
+        {
+          "w": "it.",
+          "hi": false,
+          "s": 22.592,
+          "e": 22.892
+        },
+        {
+          "w": "So",
+          "hi": false,
+          "s": 23.492,
+          "e": 23.572
+        },
+        {
+          "w": "he",
+          "hi": false,
+          "s": 23.572,
+          "e": 23.732
+        },
+        {
+          "w": "gave",
+          "hi": false,
+          "s": 23.732,
+          "e": 23.932
+        },
+        {
+          "w": "his",
+          "hi": false,
+          "s": 23.932,
+          "e": 24.152
+        },
+        {
+          "w": "company",
+          "hi": false,
+          "s": 24.152,
+          "e": 24.512
+        },
+        {
+          "w": "a",
+          "hi": false,
+          "s": 24.512,
+          "e": 24.732
+        },
+        {
+          "w": "number",
+          "hi": false,
+          "s": 24.732,
+          "e": 24.992
+        },
+        {
+          "w": "too:",
+          "hi": false,
+          "s": 24.992,
+          "e": 25.802
+        },
+        {
+          "w": "57",
+          "hi": true,
+          "s": 25.802,
+          "e": 26.612
+        },
+        {
+          "w": "varieties.",
+          "hi": true,
+          "s": 26.612,
+          "e": 26.992
+        }
+      ]
+    },
+    {
+      "id": "L07",
+      "speaker": "kip",
+      "delivery": "confident",
+      "start": 27.852,
+      "end": 30.247,
+      "text": "Because he made {57|fifty-seven} things!",
+      "caption": "",
+      "words": [
+        {
+          "w": "Because",
+          "hi": false,
+          "s": 27.852,
+          "e": 28.132
+        },
+        {
+          "w": "he",
+          "hi": false,
+          "s": 28.132,
+          "e": 28.312
+        },
+        {
+          "w": "made",
+          "hi": false,
+          "s": 28.312,
+          "e": 28.472
+        },
+        {
+          "w": "57",
+          "hi": false,
+          "s": 28.472,
+          "e": 29.412
+        },
+        {
+          "w": "things!",
+          "hi": false,
+          "s": 29.412,
+          "e": 29.832
+        }
+      ]
+    },
+    {
+      "id": "L08",
+      "speaker": "dex",
+      "delivery": "teasing",
+      "start": 30.527,
+      "end": 32.764,
+      "text": "He already made *more than {60|sixty}.*",
+      "caption": "",
+      "words": [
+        {
+          "w": "He",
+          "hi": false,
+          "s": 30.527,
+          "e": 30.627
+        },
+        {
+          "w": "already",
+          "hi": false,
+          "s": 30.627,
+          "e": 30.827
+        },
+        {
+          "w": "made",
+          "hi": false,
+          "s": 30.827,
+          "e": 31.247
+        },
+        {
+          "w": "more",
+          "hi": true,
+          "s": 31.247,
+          "e": 31.627
+        },
+        {
+          "w": "than",
+          "hi": true,
+          "s": 31.627,
+          "e": 31.907
+        },
+        {
+          "w": "60.",
+          "hi": true,
+          "s": 31.907,
+          "e": 32.367
+        }
+      ]
+    },
+    {
+      "id": "L09",
+      "speaker": "kip",
+      "delivery": "stunned",
+      "start": 33.044,
+      "end": 34.529,
+      "text": "He rounded... *down?*",
+      "caption": "",
+      "words": [
+        {
+          "w": "He",
+          "hi": false,
+          "s": 33.044,
+          "e": 33.124
+        },
+        {
+          "w": "rounded...",
+          "hi": false,
+          "s": 33.124,
+          "e": 33.864
+        },
+        {
+          "w": "down?",
+          "hi": true,
+          "s": 33.864,
+          "e": 34.124
+        }
+      ]
+    },
+    {
+      "id": "L10",
+      "speaker": "dex",
+      "delivery": "warm",
+      "start": 34.809,
+      "end": 38.127,
+      "text": "And nobody's totally sure why he picked {57|fifty-seven}.",
+      "caption": "",
+      "words": [
+        {
+          "w": "And",
+          "hi": false,
+          "s": 34.809,
+          "e": 34.929
+        },
+        {
+          "w": "nobody's",
+          "hi": false,
+          "s": 34.929,
+          "e": 35.469
+        },
+        {
+          "w": "totally",
+          "hi": false,
+          "s": 35.469,
+          "e": 35.749
+        },
+        {
+          "w": "sure",
+          "hi": false,
+          "s": 35.749,
+          "e": 36.169
+        },
+        {
+          "w": "why",
+          "hi": false,
+          "s": 36.169,
+          "e": 36.589
+        },
+        {
+          "w": "he",
+          "hi": false,
+          "s": 36.589,
+          "e": 36.909
+        },
+        {
+          "w": "picked",
+          "hi": false,
+          "s": 36.909,
+          "e": 37.129
+        },
+        {
+          "w": "57.",
+          "hi": false,
+          "s": 37.129,
+          "e": 38.089
+        }
+      ]
+    },
+    {
+      "id": "L11",
+      "speaker": "kip",
+      "delivery": "amused",
+      "start": 38.407,
+      "end": 39.82,
+      "text": "So it's... a *vibe.*",
+      "caption": "",
+      "words": [
+        {
+          "w": "So",
+          "hi": false,
+          "s": 38.407,
+          "e": 38.587
+        },
+        {
+          "w": "it's...",
+          "hi": false,
+          "s": 38.587,
+          "e": 38.907
+        },
+        {
+          "w": "a",
+          "hi": false,
+          "s": 38.907,
+          "e": 39.127
+        },
+        {
+          "w": "vibe.",
+          "hi": true,
+          "s": 39.127,
+          "e": 39.467
+        }
+      ]
+    },
+    {
+      "id": "L12",
+      "speaker": "dex",
+      "delivery": "delighted",
+      "start": 40.1,
+      "end": 50.318,
+      "text": "But here's the best part. On glass bottles, that *{57|fifty-seven}* is where Heinz says to *tap.* One firm tap there, and the ketchup comes out way easier.",
+      "caption": "",
+      "words": [
+        {
+          "w": "But",
+          "hi": false,
+          "s": 40.1,
+          "e": 40.24
+        },
+        {
+          "w": "here's",
+          "hi": false,
+          "s": 40.24,
+          "e": 40.56
+        },
+        {
+          "w": "the",
+          "hi": false,
+          "s": 40.56,
+          "e": 40.66
+        },
+        {
+          "w": "best",
+          "hi": false,
+          "s": 40.66,
+          "e": 40.86
+        },
+        {
+          "w": "part.",
+          "hi": false,
+          "s": 40.86,
+          "e": 41.14
+        },
+        {
+          "w": "On",
+          "hi": false,
+          "s": 41.86,
+          "e": 41.88
+        },
+        {
+          "w": "glass",
+          "hi": false,
+          "s": 41.88,
+          "e": 42.12
+        },
+        {
+          "w": "bottles,",
+          "hi": false,
+          "s": 42.12,
+          "e": 42.52
+        },
+        {
+          "w": "that",
+          "hi": false,
+          "s": 43.1,
+          "e": 43.2
+        },
+        {
+          "w": "57",
+          "hi": true,
+          "s": 43.2,
+          "e": 44.12
+        },
+        {
+          "w": "is",
+          "hi": false,
+          "s": 44.12,
+          "e": 44.58
+        },
+        {
+          "w": "where",
+          "hi": false,
+          "s": 44.58,
+          "e": 44.76
+        },
+        {
+          "w": "Heinz",
+          "hi": false,
+          "s": 44.76,
+          "e": 45.36
+        },
+        {
+          "w": "says",
+          "hi": false,
+          "s": 45.36,
+          "e": 45.56
+        },
+        {
+          "w": "to",
+          "hi": false,
+          "s": 45.56,
+          "e": 45.82
+        },
+        {
+          "w": "tap.",
+          "hi": true,
+          "s": 45.82,
+          "e": 46.04
+        },
+        {
+          "w": "One",
+          "hi": false,
+          "s": 46.8,
+          "e": 46.84
+        },
+        {
+          "w": "firm",
+          "hi": false,
+          "s": 46.84,
+          "e": 47.18
+        },
+        {
+          "w": "tap",
+          "hi": false,
+          "s": 47.18,
+          "e": 47.52
+        },
+        {
+          "w": "there,",
+          "hi": false,
+          "s": 47.52,
+          "e": 47.86
+        },
+        {
+          "w": "and",
+          "hi": false,
+          "s": 48.24,
+          "e": 48.34
+        },
+        {
+          "w": "the",
+          "hi": false,
+          "s": 48.34,
+          "e": 48.46
+        },
+        {
+          "w": "ketchup",
+          "hi": false,
+          "s": 48.46,
+          "e": 48.8
+        },
+        {
+          "w": "comes",
+          "hi": false,
+          "s": 48.8,
+          "e": 49.18
+        },
+        {
+          "w": "out",
+          "hi": false,
+          "s": 49.18,
+          "e": 49.38
+        },
+        {
+          "w": "way",
+          "hi": false,
+          "s": 49.38,
+          "e": 49.66
+        },
+        {
+          "w": "easier.",
+          "hi": false,
+          "s": 49.66,
+          "e": 50.1
+        }
+      ]
+    },
+    {
+      "id": "L13",
+      "speaker": "kip",
+      "delivery": "stunned",
+      "start": 50.598,
+      "end": 53.237,
+      "text": "I've been slapping the *bottom* my whole life.",
+      "caption": "",
+      "words": [
+        {
+          "w": "I've",
+          "hi": false,
+          "s": 50.598,
+          "e": 50.798
+        },
+        {
+          "w": "been",
+          "hi": false,
+          "s": 50.798,
+          "e": 50.938
+        },
+        {
+          "w": "slapping",
+          "hi": false,
+          "s": 50.938,
+          "e": 51.258
+        },
+        {
+          "w": "the",
+          "hi": false,
+          "s": 51.258,
+          "e": 51.658
+        },
+        {
+          "w": "bottom",
+          "hi": true,
+          "s": 51.658,
+          "e": 51.898
+        },
+        {
+          "w": "my",
+          "hi": false,
+          "s": 51.898,
+          "e": 52.238
+        },
+        {
+          "w": "whole",
+          "hi": false,
+          "s": 52.238,
+          "e": 52.478
+        },
+        {
+          "w": "life.",
+          "hi": false,
+          "s": 52.478,
+          "e": 52.898
+        }
+      ]
+    },
+    {
+      "id": "L14",
+      "speaker": "kip",
+      "delivery": "curious",
+      "start": 53.517,
+      "end": 55.938,
+      "text": "Okay, but seriously... why {57|fifty-seven}?",
+      "caption": "",
+      "words": [
+        {
+          "w": "Okay,",
+          "hi": false,
+          "s": 53.517,
+          "e": 53.757
+        },
+        {
+          "w": "but",
+          "hi": false,
+          "s": 53.757,
+          "e": 53.897
+        },
+        {
+          "w": "seriously...",
+          "hi": false,
+          "s": 53.897,
+          "e": 54.957
+        },
+        {
+          "w": "why",
+          "hi": false,
+          "s": 54.957,
+          "e": 54.977
+        },
+        {
+          "w": "57?",
+          "hi": false,
+          "s": 54.977,
+          "e": 55.697
+        }
+      ]
+    }
+  ]
+}
