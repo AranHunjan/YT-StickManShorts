@@ -1,5 +1,5 @@
 import React from 'react';
-import {AbsoluteFill, interpolate, random, spring, useCurrentFrame, useVideoConfig} from 'remotion';
+import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import {addPose, blink, idle, sample, talk, type Key} from '../rig/animate';
 import {DEX, KIP} from '../rig/characters';
 import {POSES, STAND} from '../rig/poses';
@@ -7,12 +7,13 @@ import {Stickman} from '../rig/Stickman';
 import type {Expression, Pose} from '../rig/types';
 import {BreadSlice, CrumbBall, DateStamp, GumBlob, NameTag, Paper, Pencil, PriestleyNote, RubberBand, RubberCube, RubberDuck, Sandwich, Tire} from '../props/Props';
 import {Caption} from '../scene/Caption';
+import {WordCaptions, type TimedWord} from '../scene/WordCaptions';
 import {Burst, IndexCard} from '../scene/Effects';
-import {BoilDefs, Paper as NotebookPaper} from '../scene/Paper';
+import {Paper as NotebookPaper} from '../scene/Paper';
 import {Watermark} from '../scene/Watermark';
 import {C, H, W} from '../style/theme';
 
-export type Timing = {duration: number; lines: {id: string; speaker: string; delivery: string; start: number; end: number; text: string; caption: string}[]};
+export type Timing = {duration: number; lines: {id: string; speaker: string; delivery: string; start: number; end: number; text: string; caption?: string; words?: TimedWord[]}[]};
 type PoseRef = [string, string];
 export type Beats = {
   lines: Record<string, {kip: PoseRef; dex: PoseRef}>;
@@ -78,13 +79,9 @@ export const Episode: React.FC<{timing: Timing; beats: Beats; episode: number}> 
   if (kipPose === 'think') kp = {...kp, hairQ: 1};
   if (kipPose === 'mindblown') kp = {...kp, hair: 1};
 
-  // Camera: gentle push-in, punch + small shake on the burst
+  // Camera: rock steady (no wobble filter, no shake); only a very slow push-in.
   const burstF = beats.burst ? F(beats.burst) : -999;
-  const punch = interpolate(frame, [burstF, burstF + 5, burstF + 30], [0, 0.06, 0.015], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
-  const shake = interpolate(frame, [burstF, burstF + 12], [10, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
-  const sx = shake * (random(`sx${frame}`) - 0.5) * 2;
-  const sy = shake * (random(`sy${frame}`) - 0.5) * 2;
-  const zoom = 1 + interpolate(frame, [0, episodeFrames(timing, fps)], [0, 0.035]) + punch;
+  const zoom = 1 + interpolate(frame, [0, episodeFrames(timing, fps)], [0, 0.02]);
 
   // Props
   const props = beats.props.map((p) => {
@@ -133,13 +130,12 @@ export const Episode: React.FC<{timing: Timing; beats: Beats; episode: number}> 
   return (
     <AbsoluteFill style={{backgroundColor: C.paper}}>
       <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`}>
-        <BoilDefs frame={frame} />
         <NotebookPaper w={W} h={H} />
-        <g transform={`translate(${sx} ${sy}) translate(540 ${GROUND}) scale(${CHAR_SCALE * zoom}) translate(-540 ${-GROUND})`}>
+        <g transform={`translate(540 ${GROUND}) scale(${CHAR_SCALE * zoom}) translate(-540 ${-GROUND})`}>
           <ellipse cx={kp.x} cy={GROUND + 10} rx={110} ry={14} fill={C.ink} opacity={0.08} />
           <ellipse cx={dp.x} cy={GROUND + 10} rx={110} ry={14} fill={C.ink} opacity={0.08} />
           {beats.burst ? <Burst x={kipHead.x} y={kipHead.y} frame={frame} from={burstF} fps={fps} r={150} /> : null}
-          <g filter="url(#boil)">
+          <g>
             <Stickman spec={DEX} pose={dp} expr={dexS.expr} groundY={GROUND} frame={frame} facing={-1} seed={2} blink={blink(frame, 2)}>
               {(j) => (cardOn && card ? <IndexCard x={j.armF.end.x - 24} y={j.armF.end.y - 62} rot={6} scale={0.8} lines={card.lines} /> : null)}
             </Stickman>
@@ -154,15 +150,19 @@ export const Episode: React.FC<{timing: Timing; beats: Beats; episode: number}> 
             </Stickman>
           </g>
         </g>
-        <g filter="url(#boil)">{props}</g>
+        <g>{props}</g>
       </svg>
       <Watermark episode={episode} antiCropY={1495} />
-      {timing.lines.map((ln, i) => {
-        const next = timing.lines[i + 1];
-        const from = i === 0 ? 0 : Math.round(ln.start * fps) - 2;
-        const to = next ? Math.round(next.start * fps) - 3 : episodeFrames(timing, fps);
-        return <Caption key={ln.id} text={ln.caption} from={from} to={to} y={378} size={80} />;
-      })}
+      {timing.lines.some((l) => l.words) ? (
+        <WordCaptions words={timing.lines.flatMap((l) => l.words ?? [])} y={372} />
+      ) : (
+        timing.lines.map((ln, i) => {
+          const next = timing.lines[i + 1];
+          const from = Math.round(ln.start * fps) - 2;
+          const to = next ? Math.round(next.start * fps) - 3 : episodeFrames(timing, fps);
+          return <Caption key={ln.id} text={ln.caption ?? ''} from={from} to={to} y={378} size={80} />;
+        })
+      )}
     </AbsoluteFill>
   );
 };

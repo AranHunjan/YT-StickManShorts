@@ -29,6 +29,12 @@ from pace import pace_tempo, stretch  # noqa: E402
 
 TAG = __import__("re").compile(r"\[[a-z ]+\]\s*")
 SR = 24000
+SHOWSAY = __import__("re").compile(r"\{([^|}]*)\|([^}]*)\}")
+
+
+def spoken(text):
+    """What the voice reads: [tags] and *highlight* stars removed, {show|say} -> say."""
+    return SHOWSAY.sub(lambda m: m.group(2), TAG.sub("", text)).replace("*", "").strip()
 
 
 def trim(src, dst):
@@ -74,7 +80,7 @@ def main():
         final = out / "lines" / f"{ln['id']}.wav"
         if only is not None and ln["id"] not in only and final.exists():
             continue
-        spk, text = ln["speaker"], TAG.sub("", ln["text"]).strip()
+        spk, text = ln["speaker"], spoken(ln["text"])
         d = deliveries[ln["delivery"]]
         ref = Path(args.refs) / f"{spk}.wav"
         best = None
@@ -119,6 +125,12 @@ def main():
     if report:
         (out / "takes_report.json").write_text(json.dumps(report, indent=2))
     print(f"voice.wav {len(voice) / SR:.2f}s, {len(timing)} lines, generated in {time.time() - t_start:.0f}s")
+    # Word-level timing for captions (needs faster-whisper; falls back to line timing without it).
+    try:
+        import faster_whisper  # noqa: F401
+        subprocess.run([sys.executable, str(HERE / "words.py"), "--script", args.script, "--audio", str(out)], check=True)
+    except ImportError:
+        print("faster-whisper not installed: captions will use line timing")
 
 
 if __name__ == "__main__":

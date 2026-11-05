@@ -12,8 +12,8 @@ Channel name: **Kip N Dex**, YouTube handle **@KipNDex** (channel created 2026-1
 
 | | |
 |---|---|
-| Role | Asks, guesses, tries things, gets it wrong, gets mind-blown. Narrates most episodes. |
-| Personality | Endlessly curious, impulsive, a little overconfident, genuinely delighted to be proven wrong. Never mean, never dumb: he is the viewer's stand-in. |
+| Role | Opens every episode with the question the viewer is secretly wondering about, then immediately "knows" the answer. |
+| Personality | A curious **know-it-all**. He jumps in with a confidently WRONG, funny theory (the joke), gets corrected, and is genuinely delighted by the real answer. Never mean, never dumb: he's the viewer's stand-in. |
 | Signature look | Classic ink stick figure with a slightly oversized round head, plus two ownable details. |
 | 1. The cowlick | One curl of hair on top that works as an **emotion meter**. It springs straight up when he's mind-blown, droops when he's sad, bends into a question mark when he's confused, and wiggles when he's excited. Readable even as a tiny thumbnail. |
 | 2. The orange scarf | Brand colour (`#FF6B1A`). Its tail flows when he moves, so the screen is never static. |
@@ -24,8 +24,8 @@ Channel name: **Kip N Dex**, YouTube handle **@KipNDex** (channel created 2026-1
 
 | | |
 |---|---|
-| Role | The calm expert. Corrects Kip, delivers the key fact, and holds up an **index card with the source**. Our two-source rule becomes an on-screen gag that also builds trust. |
-| Personality | Deadpan, unflappable, quietly enjoys Kip's chaos. Dry one-liners. Says "Actually..." and means it. |
+| Role | The friend who actually knows. Fixes Kip's theory, builds the curiosity, then serves the answer on a silver platter. Holds up an **index card with the source**; our two-source rule becomes an on-screen gag that also builds trust. |
+| Personality | **Done with Kip's know-it-all attitude, but always happy to get him to understand.** Warm, amused, a fond eye-roll ("Kip... no."), then he lights up telling the real story. Never dull, never bored. |
 | Signature look | Taller and thinner than Kip, round glasses, teal bow tie (`#13A0A0`), carries index cards. |
 | Voice | General American, late 30s. Low, calm, velvety (target 80 to 115 Hz), slower (125 to 155 words per minute), dry, with a hint of amusement. |
 | Screen time | 1 to 3 lines per episode. Some episodes are Kip alone, for variety. |
