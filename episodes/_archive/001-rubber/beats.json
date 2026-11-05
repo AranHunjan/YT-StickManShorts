@@ -1,53 +1,406 @@
 {
   "_note": "Times are 'LINE@fraction' of that line's duration (from audio/timing.json). Poses: packages/animator/src/rig/poses.ts. Props: src/props/Props.tsx.",
   "lines": {
-    "L01": {"kip": ["holdPencil", "intrigued"], "dex": ["stand", "deadpan"]},
-    "L02": {"kip": ["stand", "neutral"], "dex": ["present", "deadpan"]},
-    "L03": {"kip": ["shrug", "happy"], "dex": ["crossArms", "deadpan"]},
-    "L04": {"kip": ["stand", "intrigued"], "dex": ["present", "deadpan"]},
-    "L05": {"kip": ["leanIn", "intrigued"], "dex": ["stand", "deadpan"]},
-    "L06": {"kip": ["stand", "confused"], "dex": ["present", "deadpan"]},
-    "L07": {"kip": ["think", "intrigued"], "dex": ["crossArms", "smug"]},
-    "L08": {"kip": ["think", "intrigued"], "dex": ["adjustGlasses", "deadpan"]},
-    "L09": {"kip": ["mindblown", "mindblown"], "dex": ["crossArms", "smug"]},
-    "L10": {"kip": ["point", "happy"], "dex": ["stand", "smug"]},
-    "L11": {"kip": ["stand", "happy"], "dex": ["holdCard", "smug"]}
+    "L01": {
+      "kip": [
+        "holdPencil",
+        "intrigued"
+      ],
+      "dex": [
+        "stand",
+        "deadpan"
+      ]
+    },
+    "L02": {
+      "kip": [
+        "stand",
+        "neutral"
+      ],
+      "dex": [
+        "present",
+        "deadpan"
+      ]
+    },
+    "L03": {
+      "kip": [
+        "shrug",
+        "happy"
+      ],
+      "dex": [
+        "crossArms",
+        "deadpan"
+      ]
+    },
+    "L04": {
+      "kip": [
+        "stand",
+        "intrigued"
+      ],
+      "dex": [
+        "present",
+        "deadpan"
+      ]
+    },
+    "L05": {
+      "kip": [
+        "leanIn",
+        "intrigued"
+      ],
+      "dex": [
+        "stand",
+        "deadpan"
+      ]
+    },
+    "L06": {
+      "kip": [
+        "stand",
+        "confused"
+      ],
+      "dex": [
+        "present",
+        "deadpan"
+      ]
+    },
+    "L07": {
+      "kip": [
+        "think",
+        "intrigued"
+      ],
+      "dex": [
+        "crossArms",
+        "smug"
+      ]
+    },
+    "L08": {
+      "kip": [
+        "think",
+        "intrigued"
+      ],
+      "dex": [
+        "adjustGlasses",
+        "deadpan"
+      ]
+    },
+    "L09": {
+      "kip": [
+        "mindblown",
+        "mindblown"
+      ],
+      "dex": [
+        "crossArms",
+        "smug"
+      ]
+    },
+    "L10": {
+      "kip": [
+        "point",
+        "happy"
+      ],
+      "dex": [
+        "stand",
+        "smug"
+      ]
+    },
+    "L11": {
+      "kip": [
+        "stand",
+        "happy"
+      ],
+      "dex": [
+        "holdCard",
+        "smug"
+      ]
+    }
   },
   "props": [
-    {"id": "paper1", "kind": "paper", "in": "L01@0", "out": "L03@0.9", "x": 540, "y": 700, "scribble": ["L01@0.05", "L01@0.5"], "erase": ["L02@0.35", "L02@0.95"]},
-    {"id": "bread1", "kind": "bread", "in": "L01@0.72", "out": "L02@0.3", "x": 700, "y": 600, "scale": 0.7},
-    {"id": "crumb", "kind": "crumb", "in": "L02@0.25", "out": "L02@1", "x": [390, 700], "move": ["L02@0.35", "L02@0.95"], "y": 700, "roll": true},
-    {"id": "sandwich", "kind": "sandwich", "in": "L03@0.12", "out": "L03@1", "x": 540, "y": 640, "scale": 0.9},
-    {"id": "note", "kind": "note", "in": "L04@0.3", "out": "L04@1", "x": 540, "y": 720, "scale": 0.9},
-    {"id": "stamp", "kind": "stamp", "in": "L04@0.08", "out": "L04@1", "x": 560, "y": 590, "scale": 0.7},
-    {"id": "paper2", "kind": "paper", "in": "L05@0", "out": "L05@1", "x": 540, "y": 700, "scribble": ["L05@0", "L05@0.01"], "erase": ["L05@0.45", "L05@0.95"]},
-    {"id": "gum", "kind": "gum", "in": "L05@0.12", "out": "L06@0.2", "x": [410, 680], "move": ["L05@0.45", "L05@0.95"], "y": 700, "stretch": ["L05@0.45", "L05@0.95"]},
-    {"id": "cube", "kind": "cube", "in": "L06@0.2", "out": "L06@1", "x": 640, "y": 700},
-    {"id": "bread2", "kind": "bread", "in": "L06@0.55", "out": "L06@1", "x": 440, "y": 700, "scale": 0.6},
-    {"id": "nametag", "kind": "nametag", "in": "L07@0.1", "out": "L09@0.15", "x": 540, "y": 690, "word": "RUBBER", "hi": 3, "type": ["L08@0.15", "L08@0.6"]},
-    {"id": "tire", "kind": "tire", "in": "L10@0.02", "out": "L11@0", "x": 330, "y": 690, "scale": 0.85},
-    {"id": "band", "kind": "band", "in": "L10@0.24", "out": "L11@0", "x": 540, "y": 690, "scale": 0.9},
-    {"id": "duck", "kind": "duck", "in": "L10@0.46", "out": "L11@0", "x": 750, "y": 690, "scale": 0.85}
+    {
+      "id": "paper1",
+      "kind": "paper",
+      "in": "L01@0",
+      "out": "L03@0.9",
+      "x": 540,
+      "y": 700,
+      "scribble": [
+        "L01@0.05",
+        "L01@0.5"
+      ],
+      "erase": [
+        "L02@0.35",
+        "L02@0.95"
+      ]
+    },
+    {
+      "id": "bread1",
+      "kind": "bread",
+      "in": "L01@0.72",
+      "out": "L02@0.3",
+      "x": 700,
+      "y": 600,
+      "scale": 0.7
+    },
+    {
+      "id": "crumb",
+      "kind": "crumb",
+      "in": "L02@0.25",
+      "out": "L02@1",
+      "x": [
+        390,
+        700
+      ],
+      "move": [
+        "L02@0.35",
+        "L02@0.95"
+      ],
+      "y": 700,
+      "roll": true
+    },
+    {
+      "id": "sandwich",
+      "kind": "sandwich",
+      "in": "L03@0.12",
+      "out": "L03@1",
+      "x": 540,
+      "y": 640,
+      "scale": 0.9
+    },
+    {
+      "id": "note",
+      "kind": "note",
+      "in": "L04@0.3",
+      "out": "L04@1",
+      "x": 540,
+      "y": 720,
+      "scale": 0.9
+    },
+    {
+      "id": "stamp",
+      "kind": "datestamp",
+      "in": "L04@0.08",
+      "out": "L04@1",
+      "x": 560,
+      "y": 590,
+      "scale": 0.7
+    },
+    {
+      "id": "paper2",
+      "kind": "paper",
+      "in": "L05@0",
+      "out": "L05@1",
+      "x": 540,
+      "y": 700,
+      "scribble": [
+        "L05@0",
+        "L05@0.01"
+      ],
+      "erase": [
+        "L05@0.45",
+        "L05@0.95"
+      ]
+    },
+    {
+      "id": "gum",
+      "kind": "gum",
+      "in": "L05@0.12",
+      "out": "L06@0.2",
+      "x": [
+        410,
+        680
+      ],
+      "move": [
+        "L05@0.45",
+        "L05@0.95"
+      ],
+      "y": 700,
+      "stretch": [
+        "L05@0.45",
+        "L05@0.95"
+      ]
+    },
+    {
+      "id": "cube",
+      "kind": "cube",
+      "in": "L06@0.2",
+      "out": "L06@1",
+      "x": 640,
+      "y": 700
+    },
+    {
+      "id": "bread2",
+      "kind": "bread",
+      "in": "L06@0.55",
+      "out": "L06@1",
+      "x": 440,
+      "y": 700,
+      "scale": 0.6
+    },
+    {
+      "id": "nametag",
+      "kind": "nametag",
+      "in": "L07@0.1",
+      "out": "L09@0.15",
+      "x": 540,
+      "y": 690,
+      "word": "RUBBER",
+      "hi": 3,
+      "type": [
+        "L08@0.15",
+        "L08@0.6"
+      ]
+    },
+    {
+      "id": "tire",
+      "kind": "tire",
+      "in": "L10@0.02",
+      "out": "L11@0",
+      "x": 330,
+      "y": 690,
+      "scale": 0.85
+    },
+    {
+      "id": "band",
+      "kind": "band",
+      "in": "L10@0.24",
+      "out": "L11@0",
+      "x": 540,
+      "y": 690,
+      "scale": 0.9
+    },
+    {
+      "id": "duck",
+      "kind": "duck",
+      "in": "L10@0.46",
+      "out": "L11@0",
+      "x": 750,
+      "y": 690,
+      "scale": 0.85
+    }
   ],
   "burst": "L09@0",
-  "kipHold": {"pencil": ["L01@0", "L01@1"]},
-  "dexCard": {"lines": ["SOURCES: 2", "bread not", "included"], "in": "L11@0", "out": "END"},
+  "kipHold": {
+    "pencil": [
+      "L01@0",
+      "L01@1"
+    ]
+  },
+  "dexCard": {
+    "lines": [
+      "SOURCES: 2",
+      "bread not",
+      "included"
+    ],
+    "in": "L11@0",
+    "out": "END"
+  },
   "sfx": [
-    ["scribble", "L01@0.06", -10],
-    ["pop", "L01@0.72", -6],
-    ["erase", "L02@0.35", -10],
-    ["pop", "L03@0.12", -6],
-    ["thud", "L04@0.08", -6],
-    ["whoosh", "L04@0.3", -12],
-    ["boing", "L05@0.12", -9],
-    ["erase", "L05@0.45", -10],
-    ["pop", "L06@0.2", -6],
-    ["whoosh", "L06@0.55", -12],
-    ["tick", "L08@0.15", -8], ["tick", "L08@0.24", -8], ["tick", "L08@0.33", -8],
-    ["tick", "L08@0.42", -8], ["tick", "L08@0.51", -8], ["tick", "L08@0.6", -8],
-    ["ding", "L08@0.66", -10],
-    ["sparkle", "L09@0", -8],
-    ["pop", "L10@0.02", -6], ["pop", "L10@0.24", -6], ["boing", "L10@0.46", -8],
-    ["tick", "L11@0", -8]
+    [
+      "scribble",
+      "L01@0.06",
+      -10
+    ],
+    [
+      "pop",
+      "L01@0.72",
+      -6
+    ],
+    [
+      "erase",
+      "L02@0.35",
+      -10
+    ],
+    [
+      "pop",
+      "L03@0.12",
+      -6
+    ],
+    [
+      "thud",
+      "L04@0.08",
+      -6
+    ],
+    [
+      "whoosh",
+      "L04@0.3",
+      -12
+    ],
+    [
+      "boing",
+      "L05@0.12",
+      -9
+    ],
+    [
+      "erase",
+      "L05@0.45",
+      -10
+    ],
+    [
+      "pop",
+      "L06@0.2",
+      -6
+    ],
+    [
+      "whoosh",
+      "L06@0.55",
+      -12
+    ],
+    [
+      "tick",
+      "L08@0.15",
+      -8
+    ],
+    [
+      "tick",
+      "L08@0.24",
+      -8
+    ],
+    [
+      "tick",
+      "L08@0.33",
+      -8
+    ],
+    [
+      "tick",
+      "L08@0.42",
+      -8
+    ],
+    [
+      "tick",
+      "L08@0.51",
+      -8
+    ],
+    [
+      "tick",
+      "L08@0.6",
+      -8
+    ],
+    [
+      "ding",
+      "L08@0.66",
+      -10
+    ],
+    [
+      "sparkle",
+      "L09@0",
+      -8
+    ],
+    [
+      "pop",
+      "L10@0.02",
+      -6
+    ],
+    [
+      "pop",
+      "L10@0.24",
+      -6
+    ],
+    [
+      "boing",
+      "L10@0.46",
+      -8
+    ],
+    [
+      "tick",
+      "L11@0",
+      -8
+    ]
   ]
 }

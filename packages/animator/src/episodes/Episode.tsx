@@ -5,6 +5,7 @@ import {DEX, KIP} from '../rig/characters';
 import {POSES, STAND} from '../rig/poses';
 import {Stickman} from '../rig/Stickman';
 import type {Expression, Pose} from '../rig/types';
+import {BottleTap, Banner, KetchupBottle, ProductShelf, QuestionMark, Stamp, TomatoPile, TrainAd} from '../props/Kitchen';
 import {BreadSlice, CrumbBall, DateStamp, GumBlob, NameTag, Paper, Pencil, PriestleyNote, RubberBand, RubberCube, RubberDuck, Sandwich, Tire} from '../props/Props';
 import {Caption} from '../scene/Caption';
 import {WordCaptions, type TimedWord} from '../scene/WordCaptions';
@@ -106,13 +107,21 @@ export const Episode: React.FC<{timing: Timing; beats: Beats; episode: number}> 
       case 'crumb': el = <CrumbBall />; break;
       case 'sandwich': el = <Sandwich />; break;
       case 'note': el = <PriestleyNote />; break;
-      case 'stamp': el = <DateStamp text="1770" />; break;
+      case 'datestamp': el = <DateStamp text={(p.text as string) ?? '1770'} />; break;
       case 'gum': el = <GumBlob stretch={Math.sin(Math.PI * prog('stretch'))} />; break;
       case 'cube': el = <RubberCube />; break;
       case 'nametag': el = <NameTag word={p.word as string} typed={prog('type')} hi={(p.hi as number) ?? 0} />; break;
       case 'tire': el = <Tire />; break;
       case 'band': el = <RubberBand />; break;
       case 'duck': el = <RubberDuck />; break;
+      case 'bottle': el = <KetchupBottle big57={Boolean(p.big57)} />; break;
+      case 'tomatoes': el = <TomatoPile squish={Math.sin(Math.PI * 0.5 * prog('squish'))} />; break;
+      case 'stamp': el = <Stamp text={p.text as string} color={p.color === 'ink' ? C.ink : C.red} />; break;
+      case 'trainad': el = <TrainAd />; break;
+      case 'banner': el = <Banner text={p.text as string} />; break;
+      case 'shelf': el = <ProductShelf fill={prog('fill')} />; break;
+      case 'question': el = <QuestionMark />; break;
+      case 'bottletap': el = <BottleTap tap={prog('tap')} pour={prog('pour')} />; break;
     }
     return (
       <g key={p.id as string} transform={`translate(${x} ${y}) rotate(${roll}) scale(${s})`}>
@@ -154,7 +163,7 @@ export const Episode: React.FC<{timing: Timing; beats: Beats; episode: number}> 
       </svg>
       <Watermark episode={episode} antiCropY={1495} />
       {timing.lines.some((l) => l.words) ? (
-        <WordCaptions words={timing.lines.flatMap((l) => l.words ?? [])} y={372} />
+        <WordCaptions words={timing.lines.flatMap((l) => (l.words ?? []).map((w) => ({...w, sp: l.speaker})))} y={372} />
       ) : (
         timing.lines.map((ln, i) => {
           const next = timing.lines[i + 1];

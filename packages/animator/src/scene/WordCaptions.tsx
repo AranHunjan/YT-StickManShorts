@@ -2,7 +2,7 @@ import React from 'react';
 import {interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import {C, FONT} from '../style/theme';
 
-export type TimedWord = {w: string; s: number; e: number; hi?: boolean};
+export type TimedWord = {w: string; s: number; e: number; hi?: boolean; sp?: string};
 
 /** Group words into short caption chunks (1-3 words), breaking at punctuation and pauses. */
 export function chunkWords(words: TimedWord[], maxWords = 3, maxChars = 18): TimedWord[][] {
@@ -92,7 +92,7 @@ export const WordCaptions: React.FC<{words: TimedWord[]; y: number; size?: numbe
                 }}
               />
             ) : null}
-            <span style={{position: 'relative', color: active && !w.hi ? C.kip : C.ink}}>{w.w}</span>
+            <span style={{position: 'relative', color: active && !w.hi ? (w.sp === 'dex' ? C.dex : C.kip) : C.ink}}>{w.w}</span>
           </span>
         );
       })}

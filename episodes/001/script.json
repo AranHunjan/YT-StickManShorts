@@ -1,0 +1,21 @@
+{
+  "episode": 1,
+  "title": "Why does Heinz ketchup say 57?",
+  "format": "kip_wrong_dex_right",
+  "lines": [
+    {"id": "L01", "speaker": "kip", "delivery": "curious",   "text": "Hey Dex... why does Heinz ketchup say *{57|fifty-seven}* on the bottle?"},
+    {"id": "L02", "speaker": "kip", "delivery": "confident", "text": "Wait, don't tell me. It's {57|fifty-seven} *tomatoes.* Squished into every bottle."},
+    {"id": "L03", "speaker": "dex", "delivery": "teasing",   "text": "Kip... no. That number's basically *made up.* And it hides a *trick.*"},
+    {"id": "L04", "speaker": "kip", "delivery": "stunned",   "text": "Made up?!"},
+    {"id": "L05", "speaker": "dex", "delivery": "warm",      "text": "In {1896|eighteen ninety-six}, Henry Heinz saw an ad on a train: *{21|twenty-one} styles* of shoes."},
+    {"id": "L06", "speaker": "dex", "delivery": "delighted", "text": "He loved it. So he gave his company a number too: *{57|fifty-seven} varieties.*"},
+    {"id": "L07", "speaker": "kip", "delivery": "confident", "text": "Because he made {57|fifty-seven} things!"},
+    {"id": "L08", "speaker": "dex", "delivery": "teasing",   "text": "He already made *more than {60|sixty}.*"},
+    {"id": "L09", "speaker": "kip", "delivery": "stunned",   "text": "He rounded... *down?*"},
+    {"id": "L10", "speaker": "dex", "delivery": "warm",      "text": "And nobody's totally sure why he picked {57|fifty-seven}."},
+    {"id": "L11", "speaker": "kip", "delivery": "amused",    "text": "So it's... a *vibe.*"},
+    {"id": "L12", "speaker": "dex", "delivery": "delighted", "text": "But here's the best part. On glass bottles, that *{57|fifty-seven}* is where Heinz says to *tap.* One firm tap there, and the ketchup comes out way easier."},
+    {"id": "L13", "speaker": "kip", "delivery": "stunned",   "text": "I've been slapping the *bottom* my whole life."},
+    {"id": "L14", "speaker": "kip", "delivery": "curious",   "text": "Okay, but seriously... why {57|fifty-seven}?"}
+  ]
+}
