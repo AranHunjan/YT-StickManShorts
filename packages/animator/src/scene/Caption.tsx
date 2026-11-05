@@ -4,9 +4,27 @@ import {C, FONT} from '../style/theme';
 
 export type Word = {t: string; hi?: boolean; color?: string};
 
-/** Parse "Russia once *TAXED* beards" -> words, *starred* words get the highlighter. */
-export const words = (s: string): Word[] =>
-  s.split(' ').map((t) => (t.startsWith('*') && t.endsWith('*') ? {t: t.slice(1, -1), hi: true} : {t}));
+/** Parse "Named after *fixing mistakes.*" -> words; everything between stars gets
+ * the highlighter (single words or multi-word spans). */
+export const words = (s: string): Word[] => {
+  const out: Word[] = [];
+  let on = false;
+  for (const raw of s.split(' ')) {
+    let t = raw;
+    let hi = on;
+    if (t.startsWith('*')) {
+      t = t.slice(1);
+      hi = true;
+      on = true;
+    }
+    if (t.endsWith('*')) {
+      t = t.slice(0, -1);
+      on = false;
+    }
+    out.push({t, hi});
+  }
+  return out;
+};
 
 type Props = {
   text: string;

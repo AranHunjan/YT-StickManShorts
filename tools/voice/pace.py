@@ -22,6 +22,25 @@ from analyze import TARGETS, measure  # noqa: E402
 MAX_STRETCH = 0.15
 
 
+def pace_tempo(speaker, wpm):
+    """Tempo factor that moves `wpm` into the speaker's band (1.0 = unchanged)."""
+    lo, hi = TARGETS[speaker]["wpm"]
+    if wpm and wpm > hi:
+        return max(hi / wpm, 1 - MAX_STRETCH)
+    if wpm and wpm < lo:
+        return min(lo / wpm, 1 + MAX_STRETCH)
+    return 1.0
+
+
+def stretch(src, dst, tempo):
+    """Time-stretch with pitch and formants preserved (ffmpeg rubberband)."""
+    if abs(tempo - 1) < 0.01:
+        Path(dst).write_bytes(Path(src).read_bytes())
+        return
+    subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", str(src),
+                    "-af", f"rubberband=tempo={tempo:.4f}:formant=preserved", str(dst)], check=True)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--dir", required=True)
@@ -36,19 +55,9 @@ def main():
         ln = lines.get(f.stem)
         if not ln:
             continue
-        lo, hi = TARGETS[ln["speaker"]]["wpm"]
         wpm = measure(f, ln["text"])["wpm"]
-        tempo = 1.0
-        if wpm and wpm > hi:
-            tempo = max(hi / wpm, 1 - MAX_STRETCH)
-        elif wpm and wpm < lo:
-            tempo = min(lo / wpm, 1 + MAX_STRETCH)
-        out = dst / f.name
-        if abs(tempo - 1) < 0.01:
-            out.write_bytes(f.read_bytes())
-        else:
-            subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", str(f),
-                            "-af", f"rubberband=tempo={tempo:.4f}:formant=preserved", str(out)], check=True)
+        tempo = pace_tempo(ln["speaker"], wpm)
+        stretch(f, dst / f.name, tempo)
         print(f"{f.stem:16} {ln['speaker']:4} {wpm:>4} wpm -> tempo {tempo:.2f} -> ~{round(wpm * tempo)} wpm")
 
 

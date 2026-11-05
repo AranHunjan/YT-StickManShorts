@@ -4,6 +4,9 @@ import {Avatar} from './compositions/Avatar';
 import {ChannelAvatar, ChannelBanner} from './compositions/Branding';
 import {CharacterSheet} from './compositions/CharacterSheet';
 import {RigTest} from './compositions/RigTest';
+import {Episode, episodeFrames, type Beats, type Timing} from './episodes/Episode';
+import beats001 from '../../../episodes/001/beats.json';
+import timing001 from '../../../episodes/001/audio/timing.json';
 import {C, FPS, H, W} from './style/theme';
 
 export const Root: React.FC = () => (
@@ -15,6 +18,15 @@ export const Root: React.FC = () => (
     <Still id="Avatar-magnifier-yellow" component={Avatar} width={800} height={800} defaultProps={{variant: 'magnifier' as const, bg: C.hi}} />
     <Still id="ChannelBanner" component={ChannelBanner} width={2560} height={1440} defaultProps={{showSafeArea: false}} />
     <Still id="ChannelBannerSafeArea" component={ChannelBanner} width={2560} height={1440} defaultProps={{showSafeArea: true}} />
+    <Composition
+      id="Ep001"
+      component={Episode}
+      durationInFrames={episodeFrames(timing001 as Timing, FPS)}
+      fps={FPS}
+      width={W}
+      height={H}
+      defaultProps={{timing: timing001 as Timing, beats: beats001 as unknown as Beats, episode: 1}}
+    />
     <Composition id="RigTest" component={RigTest} durationInFrames={270} fps={FPS} width={W} height={H} defaultProps={{showSafeZones: false}} />
     <Composition id="RigTestSafeZones" component={RigTest} durationInFrames={270} fps={FPS} width={W} height={H} defaultProps={{showSafeZones: true}} />
   </>

@@ -1,0 +1,18 @@
+{
+  "episode": 1,
+  "title": "Why is rubber called rubber?",
+  "format": "hidden_story",
+  "lines": [
+    {"id": "L01", "speaker": "kip", "delivery": "intrigued", "text": "For hundreds of years, if you made a mistake in pencil... you fixed it with bread.", "caption": "You fixed it with *BREAD.*"},
+    {"id": "L02", "speaker": "dex", "delivery": "deadpan", "text": "Bread crumbs. Rolled into a little ball, they lifted the pencil right off the page.", "caption": "Bread *crumbs.*"},
+    {"id": "L03", "speaker": "kip", "delivery": "amused", "text": "So every desk had... a little sandwich on it?", "caption": "Every desk had a *sandwich?*"},
+    {"id": "L04", "speaker": "dex", "delivery": "deadpan", "text": "Then, in seventeen seventy, a scientist named Joseph Priestley wrote down something odd.", "caption": "Then came *1770.*"},
+    {"id": "L05", "speaker": "kip", "delivery": "hushed", "text": "A stretchy tree gum... that wiped pencil marks off paper. Better than bread.", "caption": "A stretchy *tree gum.*"},
+    {"id": "L06", "speaker": "dex", "delivery": "deadpan", "text": "An instrument maker, Edward Nairne, sold little cubes of it. He claimed he grabbed it by accident, instead of his bread crumbs.", "caption": "Grabbed by *accident?*"},
+    {"id": "L07", "speaker": "kip", "delivery": "intrigued", "text": "And this new stuff needed a name...", "caption": "It needed a *name.*"},
+    {"id": "L08", "speaker": "dex", "delivery": "deadpan", "text": "So they named it after what it did. It rubbed things out.", "caption": "It *RUBBED* things out."},
+    {"id": "L09", "speaker": "kip", "delivery": "stunned", "text": "Wait... rubber is called rubber... because it erased pencil?", "caption": "*RUBBER* = it rubs out?!"},
+    {"id": "L10", "speaker": "kip", "delivery": "amused", "text": "Car tires. Rubber bands. Rubber ducks. All named after... fixing mistakes.", "caption": "Named after *fixing mistakes.*"},
+    {"id": "L11", "speaker": "dex", "delivery": "dry", "text": "Two sources, Kip. Bread not included.", "caption": "Two sources. *Bread not included.*"}
+  ]
+}

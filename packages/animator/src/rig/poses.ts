@@ -38,6 +38,9 @@ export const POSES = {
   adjustGlasses: {armF: [112, 115], armB: [-12, 20], head: 2},
   celebrate: {armF: [125, 20], armB: [-125, -20], lift: 24, legB: [-20, 30], legF: [20, -30], hair: 0.6},
   sad: {armF: [6, 0], armB: [-6, 0], lean: 6, head: 16, hair: -1, squash: 0.95, lookY: 1},
+  holdPencil: {armF: [78, -28], armB: [-12, 14], head: 4, lookX: 0.6, lookY: 0.3},
+  present: {armF: [70, 45], armB: [-12, 12], head: 4, lookX: 0.6},
+  leanIn: {lean: 9, head: 8, lookX: 1, lookY: 0.4, armF: [20, 30], armB: [-14, 12]},
 } satisfies Record<string, Partial<Pose>>;
 
 export type PoseName = keyof typeof POSES;
