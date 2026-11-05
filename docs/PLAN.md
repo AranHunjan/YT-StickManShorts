@@ -641,12 +641,12 @@ docs/
 |---|---|
 | Voice engine | **Chatterbox** daily (a per-line emotion dial, capped so nothing is loud); Chatterbox Turbo for fast previews and backup |
 | Voices | General American for both. Calm, intriguing, never loud. Picked by measurement against research targets; see [VOICE.md](VOICE.md). Reference clips are permanent in `assets/voices/` |
-| Channel name | **Kipdex** (`@kipdex`), tagline "The hidden stories of everyday things." Replaces "Stickly Speaking", which was too long. Free on YouTube, TikTok and .com as of 2026-11-05; Instagram still to check |
+| Channel name | **Kip N Dex** (YouTube **@KipNDex**, created by the owner on 2026-11-05), tagline "The hidden stories of everyday things." Setup kit: [CHANNEL.md](CHANNEL.md) |
 | Watermark | Burned into every video: brand pill top-left, plus a faint handle under the characters (anti-crop). Set in `packages/animator/src/style/brand.ts` |
 
 ### Still open
 
-1. **Claim the name:** create `@kipdex` on YouTube, TikTok and Instagram before someone else does. kipdex.com can wait until there is revenue.
+1. **Claim the name everywhere:** `@kipndex` on TikTok (free on 2026-11-05) and Instagram. Upload the avatar, banner and description from [CHANNEL.md](CHANNEL.md). `kipndex.com` can wait until there is revenue.
 2. **Voice review by ear:** the v2 samples in `docs/review/voice-v2/`.
 3. **Pilot episode:** a verified fact, a script, voices, animation timed to the voice, the mix, and the watermark.
 

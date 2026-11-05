@@ -22,7 +22,7 @@ const Label: React.FC<{x: number; y: number; size?: number; color?: string; anch
 );
 
 /** A character drawn small at (cx, groundY) with a uniform scale. */
-const Mini: React.FC<{spec: CharacterSpec; p: Pose; expr: Expression; cx: number; gy: number; s: number; facing?: 1 | -1; card?: boolean}> = ({
+export const Mini: React.FC<{spec: CharacterSpec; p: Pose; expr: Expression; cx: number; gy: number; s: number; facing?: 1 | -1; card?: boolean}> = ({
   spec, p, expr, cx, gy, s, facing = 1, card,
 }) => (
   <g transform={`translate(${cx} ${gy}) scale(${s}) translate(-540 0)`}>

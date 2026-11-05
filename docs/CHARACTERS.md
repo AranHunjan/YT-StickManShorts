@@ -6,7 +6,7 @@ Everything here is a proposal. Change anything, and the rig code follows this fi
 
 **Kip**, a curious stickman who is sure he already knows how the world works, keeps finding out the wild true story behind everyday things. **Dex**, his deadpan friend, always brings the receipts.
 
-Channel name: **Kipdex** (`@kipdex`). It's short and coined, from Kip + Dex + "index": a catalogue of the hidden stories behind everyday things. On 2026-11-05 the handle was free on YouTube and TikTok, `kipdex.com` was unregistered, and a web search found no existing brand (`tools/brand/namecheck.sh` re-checks). Instagram needs a login, so check that one by hand. This isn't legal trademark clearance. Tagline: "The hidden stories of everyday things." Every video carries a burned-in watermark with the name and handle; see `packages/animator/src/style/brand.ts`.
+Channel name: **Kip N Dex**, YouTube handle **@KipNDex** (channel created 2026-11-05). Tagline: "The hidden stories of everyday things." Every video carries a burned-in watermark with the name and handle; see `packages/animator/src/style/brand.ts`. Avatar, banner and description are in [CHANNEL.md](CHANNEL.md).
 
 ## Kip (the lead)
 
