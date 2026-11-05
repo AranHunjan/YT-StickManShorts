@@ -635,11 +635,20 @@ docs/
 | RAM | 16 GB | Fine. Run one voice model at a time (the bake-off already does this) |
 | Free disk | ~110 GB | Models need ~10 GB; keep at least 30 GB free for renders |
 
+### Decided since (2026-11-05, round 2)
+
+| Topic | Decision |
+|---|---|
+| Voice engine | **Chatterbox** daily (a per-line emotion dial, capped so nothing is loud); Chatterbox Turbo for fast previews and backup |
+| Voices | General American for both. Calm, intriguing, never loud. Picked by measurement against research targets; see [VOICE.md](VOICE.md). Reference clips are permanent in `assets/voices/` |
+| Channel name | Recommended **Stickly Speaking** (`@sticklyspeaking`), tagline "We stick to the facts." Waiting on the handle availability check |
+| Watermark | Burned into every video: brand pill top-left, plus a faint handle under the characters (anti-crop). Set in `packages/animator/src/style/brand.ts` |
+
 ### Still open
 
-1. **Voice:** pick the winner of the bake-off (`tools/voice/`).
-2. **Character v1 review:** feedback on `docs/review/character-sheet-v1.png` and `rig-test-v1.mp4`.
-3. **Channel name:** check that "Stick to the Facts" (or a backup) is free on YouTube, TikTok and Instagram.
+1. **Handle check:** confirm `@sticklyspeaking` (or a backup) is free on YouTube, TikTok and Instagram.
+2. **Voice review by ear:** the v2 samples in `docs/review/voice-v2/`.
+3. **Pilot episode:** a verified fact, a script, voices, animation timed to the voice, the mix, and the watermark.
 
 ---
 

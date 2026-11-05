@@ -1,6 +1,13 @@
 # Voice bake-off (free, runs on your PC)
 
-Runs the same six lines (Kip and Dex, with excited, shocked, whisper, laugh, deadpan and dry delivery) through every candidate engine, so we can pick the channel's voice by ear.
+> **The channel voices are already chosen** (see [docs/VOICE.md](../../docs/VOICE.md)): `assets/voices/kip.wav` and `assets/voices/dex.wav`. To voice lines with them on your PC:
+> ```powershell
+> .\tools\voice\.venvs\chatterbox\Scripts\python.exe tools\voice\bakeoff.py --engine chatterbox --refs-dir assets\voices
+> .\tools\voice\.venvs\chatterbox\Scripts\python.exe tools\voice\analyze.py
+> ```
+> The rest of this page is for designing and comparing new candidate voices.
+
+Runs the same six lines (Kip and Dex, with intrigued, hushed, stunned, amused, deadpan and dry delivery) through every candidate engine, so we can pick the channel's voice by ear.
 
 | Engine | Licence | What it tests |
 |---|---|---|
@@ -45,12 +52,19 @@ Open `out\voice-bakeoff\compare\`. There is one WAV per engine or voice, with al
 |---|---|
 | `kokoro_am_puck.wav`, `kokoro_bm_george.wav`, ... | Kokoro built-in voices. Each file only contains the lines for the character that voice was assigned to. |
 | `chatterbox-builtin.wav`, `turbo-builtin.wav` | The models' default voice |
-| `qwen.wav` | Designed voices, emotion from written instructions |
-| `chatterbox-clone.wav`, `turbo-clone.wav` | The designed voices, cloned. **This is the planned production setup.** |
+| `qwen-a.wav`, `qwen-b.wav` | Designed candidates A and B, with emotion from written instructions |
+| `chatterbox-clone-a.wav`, `turbo-clone-b.wav`, ... | Candidate design A or B, cloned. **This is the planned production setup.** |
+| `chatterbox-final.wav` | The chosen channel voices from `assets/voices` (`--refs-dir`) |
 
 Single lines are in the sub-folders, and the designed reference clips are in `out\voice-bakeoff\refs\`.
 
-Score each one from 1 to 5 on:
+Then measure them. This scores pitch, pitch range, pace and loudness against the research targets, and flags bad takes:
+
+```powershell
+.\tools\voice\.venvs\chatterbox\Scripts\python.exe tools\voice\analyze.py
+```
+
+Then score each one by ear, from 1 to 5, on:
 1. Does Kip sound like Kip, and Dex like Dex?
 2. Is the emotion believable (the shock, the whisper, the laugh)?
 3. Is the pronunciation clean, with no glitches?

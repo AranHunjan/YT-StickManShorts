@@ -151,7 +151,7 @@ def run_qwen(cfg, lines, out, device, refs_only=False):
     t.report("qwen")
 
 
-def run_chatterbox(cfg, lines, out, device, turbo, only_variant=None):
+def run_chatterbox(cfg, lines, out, device, turbo, only_variant=None, refs_dir=None):
     if turbo:
         from chatterbox.tts_turbo import ChatterboxTurboTTS as Model
     else:
@@ -165,6 +165,9 @@ def run_chatterbox(cfg, lines, out, device, turbo, only_variant=None):
     # A variant is usable once every character has a reference clip for it.
     ready = [v for v in variants if all((out / "refs" / f"{spk}_{v}.wav").exists() for spk in speakers)]
     runs = [(f"{name}-clone-{v}", {spk: out / "refs" / f"{spk}_{v}.wav" for spk in speakers}) for v in ready]
+    if refs_dir:
+        # The channel's permanent voices (assets/voices/<speaker>.wav).
+        runs = [(f"{name}-final", {spk: Path(refs_dir) / f"{spk}.wav" for spk in speakers})]
     if not runs:
         print(f"[{name}] no designed reference clips yet: using the built-in voice (run --engine qwen first)")
         runs = [(f"{name}-builtin", None)]
@@ -223,6 +226,7 @@ def main():
     ap.add_argument("--only", help="comma-separated line ids")
     ap.add_argument("--variant", help="clone only this candidate voice (a, b, ...)")
     ap.add_argument("--refs-only", action="store_true", help="qwen: only design the reference clips")
+    ap.add_argument("--refs-dir", help="clone these reference clips (<speaker>.wav), e.g. assets/voices")
     args = ap.parse_args()
     out = Path(args.out)
 
@@ -245,7 +249,7 @@ def main():
     elif args.engine == "qwen":
         run_qwen(cfg, lines, out, device, refs_only=args.refs_only)
     else:
-        run_chatterbox(cfg, lines, out, device, turbo=args.engine == "turbo", only_variant=args.variant)
+        run_chatterbox(cfg, lines, out, device, turbo=args.engine == "turbo", only_variant=args.variant, refs_dir=args.refs_dir)
 
 
 if __name__ == "__main__":
