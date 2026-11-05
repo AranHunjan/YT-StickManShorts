@@ -5,23 +5,13 @@ import {pose} from '../rig/poses';
 import {Paper} from '../scene/Paper';
 import {BRAND} from '../style/brand';
 import {C, FONT} from '../style/theme';
+import {Avatar} from './Avatar';
 import {Mini} from './CharacterSheet';
 
-/** YouTube profile picture: 800x800, shown as a circle, so everything stays central. */
-export const ChannelAvatar: React.FC = () => (
-  <AbsoluteFill style={{background: C.hi}}>
-    <svg width={800} height={800} viewBox="0 0 800 800">
-      <defs>
-        <pattern id="agrid" width={50} height={50} patternUnits="userSpaceOnUse">
-          <path d="M 50 0 L 0 0 0 50" fill="none" stroke={C.ink} strokeWidth={2} opacity={0.08} />
-        </pattern>
-      </defs>
-      <rect width={800} height={800} fill="url(#agrid)" />
-      {/* Kip's head fills the circle; the scarf peeks in at the bottom. */}
-      <Mini spec={KIP} p={pose('stand', {head: 6, lookX: 0.3})} expr="happy" cx={400} gy={1640} s={3.1} />
-    </svg>
-  </AbsoluteFill>
-);
+/** YouTube profile picture (800x800, shown as a circle): Kip peering through a
+ * magnifying glass on Dex teal. Chosen after testing variants at 32-260 px on dark
+ * and light mode; see docs/review/avatar-comparison.png and Avatar.tsx. */
+export const ChannelAvatar: React.FC = () => <Avatar variant="magnifier" bg={C.dex} />;
 
 /**
  * YouTube banner: 2560x1440. Only the centre 1235x338 is visible on every device,

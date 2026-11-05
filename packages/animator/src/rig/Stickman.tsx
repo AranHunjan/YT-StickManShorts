@@ -13,6 +13,14 @@ const HAIR: Record<'normal' | 'up' | 'droop' | 'question', Shape> = {
 };
 const mix = (a: Shape, b: Shape, t: number): Shape => a.map(([x, y], i) => [x + (b[i][0] - x) * t, y + (b[i][1] - y) * t]);
 
+/** Cowlick path in head-local coordinates (R = 60, facing right). */
+export function cowlickPath(hair: number, hairQ: number, wig = 0): string {
+  let s = hair >= 0 ? mix(HAIR.normal, HAIR.up, hair) : mix(HAIR.normal, HAIR.droop, -hair);
+  s = mix(s, HAIR.question, hairQ);
+  s = s.map(([x, y], i) => [x + wig * (i / 6), y]);
+  return `M ${s[0][0]} ${s[0][1]} C ${s[1][0]} ${s[1][1]}, ${s[2][0]} ${s[2][1]}, ${s[3][0]} ${s[3][1]} C ${s[4][0]} ${s[4][1]}, ${s[5][0]} ${s[5][1]}, ${s[6][0]} ${s[6][1]}`;
+}
+
 const p2 = (p: Pt) => `${p.x.toFixed(1)} ${p.y.toFixed(1)}`;
 const add = (a: Pt, b: Pt, k = 1): Pt => ({x: a.x + b.x * k, y: a.y + b.y * k});
 
@@ -45,11 +53,8 @@ export const Stickman: React.FC<Props> = ({spec, pose, expr, groundY, frame, fac
   // Cowlick
   let hairEl: React.ReactNode = null;
   if (spec.cowlick) {
-    let s = pose.hair >= 0 ? mix(HAIR.normal, HAIR.up, pose.hair) : mix(HAIR.normal, HAIR.droop, -pose.hair);
-    s = mix(s, HAIR.question, pose.hairQ);
     const wig = pose.hair > 0.5 ? 3 * Math.sin(frame * 0.9) : 1.2 * Math.sin(frame * 0.15 + seed);
-    s = s.map(([x, y], i) => [x + wig * (i / 6), y]);
-    const d = `M ${s[0][0]} ${s[0][1]} C ${s[1][0]} ${s[1][1]}, ${s[2][0]} ${s[2][1]}, ${s[3][0]} ${s[3][1]} C ${s[4][0]} ${s[4][1]}, ${s[5][0]} ${s[5][1]}, ${s[6][0]} ${s[6][1]}`;
+    const d = cowlickPath(pose.hair, pose.hairQ, wig);
     hairEl = <path d={d} stroke={ink} strokeWidth={sw * 0.8 / k} fill="none" strokeLinecap="round" />;
   }
 

@@ -17,9 +17,10 @@ const BROWS: Record<Expression, BrowSet> = {
   sleepy: {l: [2, 2], r: [2, 2]},
   determined: {l: [-2, 4], r: [-2, 4]},
   deadpan: {l: [1, 1], r: [1, 1]},
+  intrigued: {l: [-2, -1], r: [-13, -8]},
 };
 
-const TALKS: Expression[] = ['neutral', 'happy', 'excited', 'smug', 'confused', 'determined', 'deadpan', 'angry', 'scared'];
+const TALKS: Expression[] = ['neutral', 'happy', 'excited', 'smug', 'confused', 'determined', 'deadpan', 'angry', 'scared', 'intrigued'];
 
 type Props = {
   spec: CharacterSpec;
@@ -119,6 +120,15 @@ export const Face: React.FC<Props> = ({spec, expr, mouth, lookX, lookY, blink, j
     case 'deadpan':
       eyeEls = eyes.map(([x, y], i) => lid(x, y, `l${i}`));
       mouthEl = <path d={`M ${mx - 8} 25 L ${mx + 8} 25`} stroke={ink} strokeWidth={sw} strokeLinecap="round" />;
+      break;
+    case 'intrigued':
+      eyeEls = eyes.map(([x, y], i) => (
+        <g key={i}>
+          {dot(x, y, 7.5, 10.5, `d${i}`)}
+          {blink > 0.5 ? <circle cx={x + lx + 2.6} cy={y + ly - 4} r={2.6} fill={C.white} /> : null}
+        </g>
+      ));
+      mouthEl = <path d={`M ${mx - 11} 24 Q ${mx + 1} 31 ${mx + 14} 19`} stroke={ink} strokeWidth={sw} fill="none" strokeLinecap="round" />;
       break;
     case 'neutral':
     default:

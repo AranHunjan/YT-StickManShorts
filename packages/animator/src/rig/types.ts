@@ -10,7 +10,8 @@ export type Expression =
   | 'angry'
   | 'sleepy'
   | 'determined'
-  | 'deadpan';
+  | 'deadpan'
+  | 'intrigued';
 
 export const EXPRESSIONS: Expression[] = [
   'neutral', 'happy', 'excited', 'shocked', 'mindblown', 'smug',

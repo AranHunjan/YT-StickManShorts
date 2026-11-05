@@ -8,7 +8,7 @@
 
 | File | Where it goes in YouTube Studio |
 |---|---|
-| `kipndex-avatar-800.png` | Customization > Branding > **Picture** (800x800; YouTube crops it to a circle, and everything important is central) |
+| `kipndex-avatar-800.png` | Customization > Branding > **Picture**. Kip peering through a magnifying glass, on Dex teal. It was picked after testing variants circle-cropped at 32 to 260 px in dark and light mode (`docs/review/avatar-comparison.png`). Alternates are in `alternatives/` |
 | `kipndex-banner-2560x1440.jpg` | Customization > Branding > **Banner image**. Everything readable sits in the 1235x338 centre that shows on every device |
 | `kipndex-avatar-800.png` (again, optional) | Customization > Branding > **Video watermark** (shows on long-form videos) |
 
