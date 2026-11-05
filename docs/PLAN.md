@@ -11,6 +11,11 @@ Numbers marked **(est.)** come from third-party reports or rough math. Check the
 2. **Automate the production line, keep a human editor.** Research, script, voice, animation, render, and upload are all automated. A human spends about 15 minutes a day choosing the fact, approving the script, and watching the render. This is the cheapest insurance against demonetization and factual errors.
 3. **Animate with code, not AI video generators.** A code-driven puppet rig plus motion graphics (Remotion). It keeps the character consistent, costs almost nothing per video, gives us full control, and does not look like "AI slop".
 4. **Shorts ads alone will not pay much.** From Feb 1, 2027, Shorts ads require 10M Shorts views per 90 days, and new Partner Program applicants need 20M Shorts views per 90 days or 8,000 watch hours. Plan revenue around four streams from day one: Shorts ads, a weekly long-form episode, cross-posting to other platforms, and sponsorships.
+5. **$0 cash until the channel earns its first dollar.** The only paid thing is the Claude subscription we already have.
+   - **Claude Code is the brain:** research, verification, scripts, SVG props and orchestration all run there.
+   - **The voice is an open-source model** running on our own computer.
+   - **Everything else is free**: open-source tools and free or CC0 assets.
+   - Paid upgrades come only after revenue (section 11).
 
 ---
 
@@ -188,13 +193,15 @@ harvest (daily, ~50 candidates)
 
 ### 3.4 Uniqueness and anti-cliche
 
-- **Embedding dedupe:** embed every used *and* rejected fact. Reject a new candidate if it is too similar to an old one. Anthropic does not offer embeddings, so use Voyage AI or a local embedding model.
+- **Dedupe:** keep a one-line summary of every used *and* rejected fact in `data/facts.jsonl`.
+  - At first, Claude checks each new candidate against that list. A year of daily facts easily fits in its context.
+  - Once the list passes ~300 entries, add a free local embedding model (for example `all-MiniLM-L6-v2`, Apache 2.0) for a fast similarity pre-filter.
 - **Cliche blocklist**, seeded with the overused "fun facts" (honey never spoils, octopuses have three hearts, Cleopatra lived closer to the Moon landing than to the pyramids, bananas are radioactive, the Emu War, and so on). Grow it over time.
 - **Saturation check:** use `search.list` (100 per day) on the candidate's core idea. If the top results already have millions of views on the *same* fact, lower its score. Do not auto-reject, because a fresh angle can still win.
 
 ### 3.5 Verification
 
-- **Claude Opus 5.5** (`claude-opus-5-5`) with the web search and web fetch server tools.
+- **Claude in Claude Code** on our existing subscription. Its built-in web search and web fetch tools do the research, so there is no API key and no per-token bill.
 - For every atomic claim in the script, store: the source URL, a supporting quote, and a confidence rating. Numbers must match the source exactly.
 - Anything with fewer than 2 independent sources is either reworded to what the evidence actually supports, or rejected.
 - **Final rule: the script may only contain claims that appear in the verified claim list.** An automated check enforces this.
@@ -253,21 +260,55 @@ The script writer returns **structured JSON** (Claude structured outputs, schema
 }
 ```
 
-### 4.3 Model and cost
+### 4.3 Where the writing happens: Claude Code on our subscription
 
-Use Claude Opus 5.5 for research, verification, and script writing. Non-urgent scoring can go through the Message Batches API at half price. Rough cost: about $1 per day (est.), see section 11.
+There is no API bill. Claude Code (included in the Claude subscription) is the writers' room and the producer. The daily flow:
+
+1. We open Claude Code in this repo and run a project command, for example `/episode`.
+2. Claude researches and verifies candidates with its built-in web search and fetch.
+3. It shows us the top 3 with sources, and we pick one.
+4. It writes the script JSON (validated against our schema).
+5. It runs the local voice, render, and FFmpeg scripts, then shows us the preview to approve.
+
+This also gives us the human-in-the-loop step for free.
+
+Later, parts can run unattended with Claude Code's headless mode (`claude -p`) from a scheduler. Usage counts toward the subscription's limits. One episode a day should fit comfortably, but watch the usage meter in the first week.
+
+When the channel earns money, the same prompts can move to the Claude API for fully unattended runs.
 
 ---
 
-## 5. Voice
+## 5. Voice (free, runs on our own computer)
 
-- **First candidate: ElevenLabs Eleven v3.** It supports inline audio tags such as `[excited]`, `[whispers]`, and `[laughs]` for expressive delivery. In Phase 0, blind-test it against one or two alternatives on the same script.
-- **Design a custom voice** with the provider's voice-design tool instead of using a stock voice that hundreds of other channels already use. A distinctive voice is part of the brand. **Never clone a real person.**
-- **Use 2 or 3 voices**: narrator, stickman, and sidekick. Contrast keeps the ear interested.
-- **Word timestamps:** some v3 endpoints do not return timestamps. Run **forced alignment** (the provider's alignment endpoint, or WhisperX) to get word-level timing for captions, lip-sync, and beat timing.
-- **Post-processing:** light compression, de-essing, and loudness normalization.
-- Wrap the provider behind a small interface so it can be swapped if pricing or quality changes.
-- Use a paid plan that includes commercial rights.
+There is no open-source ElevenLabs, but open-weight models are now good enough. We only need about 60 seconds of audio a day, so even slow hardware works: a model running 5x slower than real time still finishes in about 5 minutes.
+
+**Licence rule:** the channel is monetized, so the model weights must allow commercial use.
+- That rules out some popular models whose weights are non-commercial: F5-TTS, XTTS-v2 (Coqui), and Fish Speech / OpenAudio.
+- Re-check the licence on the model card before adopting any model.
+
+| Model | Licence | Strength | Hardware | Role |
+|---|---|---|---|---|
+| **Chatterbox / Chatterbox Turbo** (Resemble AI) | MIT | Emotion "exaggeration" dial. Turbo adds inline tags such as `[laugh]`, `[gasp]`, `[sigh]`, `[chuckle]` (English). Clones a voice from 5 to 10 s of reference audio. | NVIDIA GPU with 8 GB+ recommended; CPU and Apple Silicon work, slower | **Primary daily voice** |
+| **Qwen3-TTS** (1.7B VoiceDesign) | Apache 2.0 | Designs a brand-new voice from a text description; emotion through natural-language instructions | GPU recommended | **Create the channel's original voice once**; backup daily voice |
+| **Kokoro-82M** | Apache 2.0 | Tiny, fast, clean narration on any laptop CPU | CPU is fine | **Fallback** for weak hardware; little emotion control |
+
+### How we get an original, expressive voice for $0
+
+1. **Create the voice once.** Either:
+   - design it with Qwen3-TTS VoiceDesign from a description (for example "energetic, warm, slightly raspy narrator in his late 20s, playful, fast-talking"), or
+   - record 30 seconds of your own voice. You own it, and it is as authentic as it gets.
+2. **Save the reference.** Keep a clean 10 to 20 second clip as `assets/voices/narrator_ref.wav`. This is the channel's voice from now on.
+3. **Generate daily, line by line.** Chatterbox clones the reference for each line. Each script line carries a delivery tag (`excited`, `whisper`, `deadpan` ...), which we map to the exaggeration value and Turbo's inline tags.
+4. **Give the stickman and sidekick their own voices.** Either give each its own reference clip, or pitch-shift the narrator with FFmpeg's `rubberband` filter (a free second voice, see the `ffmpeg-shorts` skill).
+5. **Get word timings.** Run faster-whisper or WhisperX (open source) on the final voice track for captions, lip-sync, and beat timing.
+6. **Post-process.** `mix_audio.py` in the `ffmpeg-shorts` skill does the clean-up, ducking, and -14 LUFS loudness.
+
+### Rules and hardware
+
+- **Never clone a real person** without their consent. Your own voice is fine.
+- Wrap the TTS behind a small interface (`speak(text, voice, delivery) -> wav`) so models can be swapped.
+- **No suitable GPU?** CPU is fine for 60 s a day. For heavier models, free notebook GPUs (Kaggle's weekly free GPU hours, Google Colab's free tier) can batch a week of voice at once. Check their current quotas.
+- **Phase 0 bake-off:** put the same 3 script lines through each candidate, listen blind, and pick one.
 
 ---
 
@@ -304,9 +345,13 @@ Each action is a set of keyframed poses (joint angles) with easing curves, so ac
 
 ### 6.5 Props and backgrounds
 
-- A curated library of flat SVG props and backgrounds in one consistent style. Start with about 150, either drawn, commissioned, or licensed.
+- A curated library of flat SVG props and backgrounds in one consistent style. Start with about 150.
+- **$0 sources:**
+  - Claude draws simple flat SVG props in our style guide. They are free and we own them, and a human approves each one.
+  - CC0 packs such as Kenney.nl.
+  - Commissioned art waits until there is revenue.
 - Every asset gets an entry in the manifest (name, tags, anchor points, licence), so the script writer can search for and use it.
-- **Phase 3:** a prop generator (image model with a fixed style prompt, background removal, vectorization, then human approval). Approved props become permanent library assets.
+- **Phase 3:** optional local image generation, only with a commercially licensed model (for example FLUX.1 [schnell], Apache 2.0) and a GPU. Then background removal, vectorization, and human approval. Approved props become permanent library assets.
 
 ### 6.6 Motion-graphics toolkit
 
@@ -347,9 +392,14 @@ Output: 1080x1920, 30 fps (60 fps optional), H.264 with AAC audio.
 
 ## 7. Sound
 
-- **Music bed** that fits the mood of each format: licensed or YouTube Audio Library only, and ducked under the voice.
+- **Music bed** that fits the mood of each format, ducked under the voice.
+  - Source: the YouTube Audio Library (free and safe on YouTube; some tracks require attribution in the description).
+  - Avoid random "free music" sites, which can trigger Content ID claims.
 - **SFX on every action** (whoosh, pop, boing, thud, ding). This is a big part of what makes stickman animation feel "catchy".
+  - Free sources: CC0 only (Freesound filtered to CC0, Kenney audio packs).
+- **Fonts:** Google Fonts (OFL).
 - **Mix target:** about -14 LUFS integrated, which is around where YouTube normalizes. The voice always sits on top.
+- **Tooling:** the project skill `.claude/skills/ffmpeg-shorts` handles the mix, ducking, loudness, encode, and the QA gate. Its scripts are tested.
 
 ---
 
@@ -446,16 +496,17 @@ An 8 to 12 minute "extended cut" built from the week's 7 stories. It adds new co
 
 | Concern | Choice | Why |
 |---|---|---|
-| Language | **TypeScript** (Node) throughout | Remotion is React/TypeScript, so one language for everything |
-| Rendering | Remotion | Programmatic video, precise frame control |
-| LLM | Anthropic TypeScript SDK, Claude Opus 5.5 | Research with web search/fetch, structured outputs for the scene spec |
-| Embeddings | Voyage AI or a local model | Fact dedupe |
-| Database | SQLite plus a vector extension to start, Postgres + pgvector later | Simple, enough for years of daily episodes |
-| TTS | ElevenLabs v3 (behind an interface) | Expressive audio tags |
-| Alignment | Provider alignment endpoint or WhisperX | Word-level timing |
-| Scheduler | cron on a small VPS, or GitHub Actions | Daily runs |
-| Storage | S3-compatible object storage | Renders and audio |
-| Review UI | A small web page (or a chat bot) with preview plus approve / edit / regenerate | The 15-minute editor loop |
+| Languages | **TypeScript** for the animator (Remotion is React/TypeScript); **Python** for voice, alignment, and FFmpeg scripts | The open TTS models are Python-first |
+| Rendering | Remotion (free for individuals and companies of up to 3 people) | Programmatic video, precise frame control |
+| LLM / orchestration | **Claude Code on the existing subscription**: project slash commands and skills; headless `claude -p` for scheduled parts | No API bill; built-in web search and fetch; runs our local scripts |
+| Fact dedupe | Claude plus `data/facts.jsonl` to start; local `all-MiniLM-L6-v2` embeddings later | Free |
+| Database | JSONL files to start, SQLite later | Simple, versionable in git |
+| TTS | Chatterbox (MIT), with a reference voice designed in Qwen3-TTS (Apache 2.0) or recorded by us; Kokoro (Apache 2.0) as fallback | Free, local, commercial use allowed |
+| Alignment | faster-whisper or WhisperX | Word-level timing, free |
+| Audio/video post | FFmpeg via the `ffmpeg-shorts` project skill | Tested scripts for mix, loudness, encode, QA |
+| Scheduler | Daily `/episode` run in Claude Code; later cron (macOS/Linux) or Task Scheduler (Windows) | No server needed |
+| Storage | Local disk plus a backup of `assets/` and `data/` in git | Free |
+| Review UI | The preview file plus approval inside the Claude Code session; a small web page later | The 15-minute editor loop |
 
 ### Proposed repo layout
 
@@ -480,16 +531,27 @@ docs/
 
 ---
 
-## 11. Monthly running costs (est.)
+## 11. Costs
 
-| Item | Est. per month | Notes |
+### Until the first dollar: $0 cash
+
+| Item | Cost | How |
 |---|---|---|
-| Claude API (Opus 5.5 at $4 / $20 per million input / output tokens) | ~$30 to $40 | ~150k input + 20k output tokens a day, plus web-search fees; batch scoring at 50% off |
-| TTS (paid plan with commercial rights) | ~$20 to $100 | Depends on volume and retakes |
-| Music and SFX licences | $0 to $20 | $0 with the YouTube Audio Library and CC0 SFX |
-| Rendering and hosting (VPS or own machine) | $0 to $40 | |
-| Embeddings and storage | < $10 | |
-| **Total** | **~$60 to $200** | One-off: initial asset library, if commissioned |
+| Research, verification, scripts, props, orchestration | $0 extra | Claude Code on the existing Claude subscription |
+| Voice | $0 | Chatterbox / Qwen3-TTS / Kokoro running locally (or free notebook GPUs) |
+| Word alignment | $0 | faster-whisper / WhisperX |
+| Animation and rendering | $0 | Remotion (free licence tier) on our own computer |
+| Audio/video post | $0 | FFmpeg |
+| Music, SFX, fonts | $0 | YouTube Audio Library, CC0 SFX, Google Fonts |
+| Upload and analytics | $0 | YouTube Data API and Analytics API (free quota) |
+| **Total** | **$0** | Plus electricity and our time |
+
+### Upgrades only after revenue, in order of impact
+
+1. **Better voice, if it is the bottleneck**: a paid TTS such as ElevenLabs (est. $20 to $100 a month).
+2. **Fully unattended runs**: the Claude API for the daily job (est. $30 to $40 a month at one episode a day).
+3. **Commissioned art**: character sheet, prop and background packs (one-off).
+4. **A small server**, so nothing depends on our computer being on (est. $10 to $40 a month).
 
 ---
 
@@ -498,7 +560,9 @@ docs/
 ### Phase 0, week 1: identity and pilots
 
 - Decide the niche, the character, the sidekick, the name, and the visual style.
-- Voice blind test.
+- Check our computer's hardware (GPU and VRAM, RAM, OS) to pick the voice model tier.
+- Voice bake-off: Chatterbox vs Qwen3-TTS vs Kokoro on the same 3 lines, listened to blind.
+- Create the channel's reference voice (designed, or recorded by us).
 - Make **3 pilot shorts semi-manually** with the real tools to lock the style.
 - Create the channel and branding. Set up the Google Cloud project and OAuth (production mode).
 - **Exit when:** 3 pilots we would be proud to post.
@@ -554,9 +618,9 @@ docs/
 1. **Niche:** go with the recommended "wild true stories behind everyday things" across science and history, or something narrower?
 2. **Character:** name, personality, sidekick, and signature look.
 3. **Human time:** can someone commit about 15 to 30 minutes a day, every day?
-4. **Budget:** monthly running budget, plus any one-off budget for commissioned assets (props, backgrounds, character design).
-5. **Where it runs:** your own machine, a VPS, or GitHub Actions.
-6. **Language and stack:** TypeScript plus Remotion (recommended)?
+4. **Budget:** decided. $0 cash until the first revenue; only the existing Claude subscription.
+5. **Hardware:** what is in our computer (OS, GPU model and VRAM, RAM)? This decides the voice model tier and how fast renders are.
+6. **Stack:** TypeScript plus Remotion for animation, Python for voice and FFmpeg (recommended)?
 7. **Languages:** English only at first (recommended), translated channels later?
 
 ---
@@ -570,5 +634,8 @@ docs/
 - Partner Program requirements overview (third party): https://air.io/en/monetization/youtube-partner-program-requirements-2026-the-complete-guide
 - July 2026 policy clarification summary (third party): https://outlierkit.com/blog/youtube-updates-july-2026
 - Shorts RPM estimates (third party, inconsistent methodology): https://joyspace.ai/youtube-shorts-rpm-2026-calculator, https://www.shortsync.app/resources/how-much-do-youtube-shorts-pay-2026
-- ElevenLabs v3 (third-party overview): https://fal.ai/models/fal-ai/elevenlabs/tts/eleven-v3
+- ElevenLabs v3 (third-party overview, for the paid upgrade path): https://fal.ai/models/fal-ai/elevenlabs/tts/eleven-v3
 - Remotion licence: https://www.remotion.dev/docs/license/faq
+- Open-source TTS overviews (third party): https://www.bentoml.com/blog/exploring-the-world-of-open-source-text-to-speech-models, https://localaimaster.com/blog/kokoro-vs-xtts-vs-chatterbox
+- Chatterbox Turbo tags (third party): https://github.com/filliptm/ComfyUI_Fill-ChatterBox
+- Qwen3-TTS (third party guide): https://betterstack.com/community/guides/ai/qwen3-tts/
