@@ -15,6 +15,8 @@ The run also tests the **planned production setup**:
 
 These are the `chatterbox-clone` and `turbo-clone` results.
 
+**Tested** end to end on Linux CPUs in the cloud sandbox on 2026-11-05: all four engines, the design-then-clone path, and `--compare`. The Windows GPU run on your PC is the next step. The first samples are in `docs/review/voice-v1/`.
+
 ## What you need
 
 - Windows 10/11 with an NVIDIA GPU. An RTX 2070 SUPER (8 GB) is fine.
