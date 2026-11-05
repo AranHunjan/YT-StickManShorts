@@ -29,6 +29,7 @@ const DEX_X = 730;
 const CHAR_SCALE = 1.2;
 const TAIL = 0.9; // seconds held after the last line
 const PROP_SCALE = 1.3; // props read bigger on a phone than at design size
+const PROP_DY = -48; // keep scaled props clear of the characters' heads
 
 /** Resolve "L05@0.45" (or "END") to seconds using the voice timing. */
 export function at(timing: Timing, ref: string): number {
@@ -98,7 +99,7 @@ export const Episode: React.FC<{timing: Timing; beats: Beats; episode: number}> 
     };
     const xs = p.x as number | [number, number];
     const x = Array.isArray(xs) ? xs[0] + (xs[1] - xs[0]) * prog('move') : xs;
-    const y = p.y as number;
+    const y = (p.y as number) + PROP_DY;
     const s = PROP_SCALE * ((p.scale as number) ?? 1) * pop * leave;
     const roll = p.roll ? prog('move') * 540 : 0;
     let el: React.ReactNode = null;
@@ -160,7 +161,7 @@ export const Episode: React.FC<{timing: Timing; beats: Beats; episode: number}> 
         const next = timing.lines[i + 1];
         const from = i === 0 ? 0 : Math.round(ln.start * fps) - 2;
         const to = next ? Math.round(next.start * fps) - 3 : episodeFrames(timing, fps);
-        return <Caption key={ln.id} text={ln.caption} from={from} to={to} y={400} size={80} />;
+        return <Caption key={ln.id} text={ln.caption} from={from} to={to} y={378} size={80} />;
       })}
     </AbsoluteFill>
   );
