@@ -19,7 +19,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 from analyze import TARGETS, measure  # noqa: E402
 
-MAX_STRETCH = 0.15
+MAX_STRETCH = 0.08  # bigger stretches add audible artifacts (seen on Dex in episode 001)
 
 
 def pace_tempo(speaker, wpm):

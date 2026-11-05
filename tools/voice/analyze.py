@@ -12,6 +12,7 @@ For every folder of line WAVs (and each reference clip) it reports:
   range_st     pitch variation: 10th to 90th percentile F0 span in semitones
   wpm          words per minute over the trimmed speech
   loud_sd      standard deviation of loudness (dB) across speech: lower = steadier
+  breaks       pitch breaks per second (jumps > 3 semitones): a glitch/warble proxy
   voiced       share of frames with a clear pitch. Below 0.2 means a whispered or
                garbled take: it is flagged BAD and left out of the averages
   score        0-100 match to that character's target profile
@@ -44,6 +45,11 @@ def measure(path, text=None):
     # fmin 50 Hz so deep voices sliding into vocal fry are still tracked.
     f0, voiced, _ = librosa.pyin(y, fmin=50, fmax=350, sr=sr, frame_length=2048)
     vratio = float(np.mean(voiced))
+    # Glitch proxy: sudden pitch jumps (> 3 semitones) between neighbouring voiced frames.
+    fv = np.where(voiced, f0, np.nan)
+    with np.errstate(invalid="ignore", divide="ignore"):
+        jumps = np.abs(12 * np.log2(fv[1:] / fv[:-1]))
+    breaks = float(np.nansum(jumps > 3)) / max(dur, 1e-6)
     f0 = f0[voiced & ~np.isnan(f0)]
     rms = librosa.feature.rms(y=y, frame_length=1024, hop_length=256)[0]
     db = 20 * np.log10(np.maximum(rms, 1e-5))
@@ -54,6 +60,7 @@ def measure(path, text=None):
         "range_st": round(12 * math.log2(np.percentile(f0, 90) / np.percentile(f0, 10)), 1) if len(f0) > 10 else None,
         "loud_sd": round(float(np.std(speech)), 1),
         "voiced": round(vratio, 2),
+        "breaks": round(breaks, 2),
         "bad": vratio < BAD_VOICED,
     }
     if text:

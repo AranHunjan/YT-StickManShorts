@@ -87,3 +87,29 @@ Production rule:
 3. Pace-normalize the rest.
 4. Keep the take closest to the character's targets.
 5. Then the human review.
+
+## Dex v3: the "glitchy" investigation (2026-11-05)
+
+The owner heard Dex as "off and glitchy". We measured the cause with Praat voice-quality metrics, added to the review tooling:
+- **HNR** (harmonics-to-noise ratio): higher means a cleaner tone.
+- **Jitter and shimmer:** cycle-to-cycle roughness in pitch and loudness.
+
+For comparison, a healthy human voice is under about 1% jitter and under about 4% shimmer.
+
+| Dex candidate (his 6 episode lines) | Pitch | WPM | HNR | Jitter | Shimmer |
+|---|---|---|---|---|---|
+| Old: reference pitch-shifted -2 st, plus 15% time-stretch | 89 Hz | 161 | 9.2 dB | 2.8% | 12.9% |
+| Same voice, unprocessed reference, no stretch | 100 Hz | 181 | 9.9 dB | 3.0% | **10.0%** |
+| Same voice, unprocessed, 8% stretch (now in the video) | 100 Hz | 168 | 9.1 dB | 2.6% | 12.4% |
+| Qwen3-TTS preset **Aiden** + per-line instruction | 145 Hz | 144 | **14.0 dB** | 2.8% | **6.7%** |
+| Qwen3-TTS preset Ryan + per-line instruction | 184 Hz | 106 | 11.1 dB | 2.7% | 8.8% |
+| Chatterbox cloning a clean Kokoro am_michael clip | 126 Hz | 191 | 9.3 dB | 3.0% | 10.6% |
+| *Kip, for reference (the owner likes his voice)* | 136 Hz | 153 | 8.4-10 dB | 2.7% | 11.2% |
+
+Findings:
+1. **Processing the reference clip (pitch-shift) made Dex rougher.** Chatterbox clones whatever is in the reference, artifacts included ("voice cloning quality is highly dependent on reference audio cleanliness"). The reference in `assets/voices/dex.wav` is now the unprocessed original design.
+2. **Time-stretching adds roughness too**, even at 8%. Pace should come from the script (shorter sentences, more pauses), not from stretching. `pace.py` is capped at 8%.
+3. **Qwen's Aiden preset is the cleanest voice we've measured**, with half the shimmer of old Dex. He's brighter: about Kip's pitch, so the two would be told apart by timbre rather than pitch. Ryan is high and slow.
+4. Pitch-break counts did not separate "glitchy" from fine (Kip has more of them), so they're reported but not scored.
+
+Samples for listening: `docs/review/dex-voice/`.
