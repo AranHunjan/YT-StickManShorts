@@ -5,8 +5,8 @@ import {ChannelAvatar, ChannelBanner} from './compositions/Branding';
 import {CharacterSheet} from './compositions/CharacterSheet';
 import {RigTest} from './compositions/RigTest';
 import {Episode, episodeFrames, type Beats, type Timing} from './episodes/Episode';
-import beats001 from '../../../episodes/001/beats.json';
-import timing001 from '../../../episodes/001/audio/timing.json';
+import beats001 from '../../../episodes/_archive/001-rubber/beats.json';
+import timing001 from '../../../episodes/_archive/001-rubber/audio/timing.json';
 import {C, FPS, H, W} from './style/theme';
 
 export const Root: React.FC = () => (
