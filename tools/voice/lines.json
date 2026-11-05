@@ -1,31 +1,37 @@
 {
-  "_note": "Voice bake-off script. [tags] in square brackets are only used by Chatterbox Turbo; other engines strip them.",
+  "_note": "Voice bake-off v2. Calm, intriguing delivery (never loud), General American accents. See docs/VOICE.md for the evidence behind these choices. [tags] are only used by Chatterbox Turbo; other engines strip them.",
   "voices": {
     "kip": {
-      "design": "Young adult male voice in his late twenties. Bright, warm and energetic, slightly raspy, fast-talking and very expressive. Friendly, natural American accent.",
-      "kokoro": ["am_puck", "am_michael", "am_fenrir", "am_echo"],
-      "reference_text": "Hey, it's Kip. Every day I find out something wild about the stuff we see all the time, and honestly, it never gets old. Let's see what today's story is."
+      "designs": {
+        "a": "Male voice, late twenties, General American accent. Warm, smooth, low-mid pitch with a slightly breathy, intimate quality, like a curious storyteller letting you in on a secret. Calm and never loud. Wide, expressive intonation, natural pauses, a hint of a smile. Confident and relaxed; not nasal, not whiny, no stammering.",
+        "b": "Male voice, about thirty, General American accent. Rich, slightly husky voice leaning toward baritone, relaxed and assured, like a late-night podcast host who finds everything fascinating. Soft-spoken and intriguing, clear diction, playful curiosity, never shouting. Not nasal, not high-pitched."
+      },
+      "kokoro": ["am_michael", "am_puck", "am_fenrir", "am_echo"],
+      "reference_text": "So here's the thing. Every day I find out the real story behind something we see all the time... and honestly? It never gets old. Let's see what today's is."
     },
     "dex": {
-      "design": "Adult male voice in his late thirties. Low, calm and smooth, with a dry deadpan delivery and precise articulation. Subtle British accent.",
-      "kokoro": ["bm_george", "bm_lewis", "am_onyx"],
-      "reference_text": "This is Dex. I check the facts, I bring the sources, and I try very hard not to be impressed. Today, I will probably fail at that."
+      "designs": {
+        "a": "Male voice, late thirties, General American accent. Low, calm, velvety baritone with a dry deadpan wit. Slow, measured and precise, quietly amused, never loud. Smooth and understated.",
+        "b": "Male voice, about forty, General American accent. Deep, soft, slightly gravelly voice, unhurried and understated, like a museum curator sharing something he finds quietly delightful. Dry, warm, a little sardonic."
+      },
+      "kokoro": ["am_onyx", "am_adam", "am_eric"],
+      "reference_text": "This is Dex. I check the facts, I bring the sources, and I try very hard not to be impressed. Today... I will probably fail at that."
     }
   },
   "delivery": {
-    "excited":   {"exaggeration": 0.75, "cfg_weight": 0.3,  "kokoro_speed": 1.08, "instruct": "excited, energetic, fast-paced, smiling while talking"},
-    "mindblown": {"exaggeration": 0.95, "cfg_weight": 0.25, "kokoro_speed": 1.0,  "instruct": "utterly shocked and amazed, loud, voice rising in disbelief"},
-    "whisper":   {"exaggeration": 0.35, "cfg_weight": 0.5,  "kokoro_speed": 0.92, "instruct": "whispering conspiratorially, quiet and secretive"},
-    "amused":    {"exaggeration": 0.6,  "cfg_weight": 0.4,  "kokoro_speed": 1.02, "instruct": "laughing a little, delighted and amused"},
-    "deadpan":   {"exaggeration": 0.25, "cfg_weight": 0.5,  "kokoro_speed": 0.95, "instruct": "deadpan, flat, dry and unimpressed"},
-    "dry":       {"exaggeration": 0.35, "cfg_weight": 0.5,  "kokoro_speed": 0.95, "instruct": "dry and sarcastic, with a tired, slightly amused sigh"}
+    "intrigued":  {"exaggeration": 0.45, "cfg_weight": 0.5,  "kokoro_speed": 1.0,  "instruct": "intrigued and curious, drawing the listener in, calm, with rising interest"},
+    "hushed":     {"exaggeration": 0.3,  "cfg_weight": 0.5,  "kokoro_speed": 0.93, "instruct": "hushed and conspiratorial, almost whispering, as if sharing a secret"},
+    "stunned":    {"exaggeration": 0.55, "cfg_weight": 0.4,  "kokoro_speed": 0.95, "instruct": "quietly stunned, breathless disbelief, slow, not loud"},
+    "amused":     {"exaggeration": 0.5,  "cfg_weight": 0.45, "kokoro_speed": 1.0,  "instruct": "softly amused, a small warm laugh, delighted"},
+    "deadpan":    {"exaggeration": 0.3,  "cfg_weight": 0.5,  "kokoro_speed": 0.93, "instruct": "deadpan, dry and calm, matter-of-fact"},
+    "dry":        {"exaggeration": 0.35, "cfg_weight": 0.5,  "kokoro_speed": 0.93, "instruct": "dry and wry, with a tired, slightly amused sigh"}
   },
   "lines": [
-    {"id": "01_kip_hook",    "speaker": "kip", "delivery": "excited",   "text": "Okay. You know the lead in your pencil? There is no lead in it. At all!"},
-    {"id": "02_dex_card",    "speaker": "dex", "delivery": "deadpan",   "text": "Actually, it's graphite. Mixed with clay. Two sources, Kip."},
-    {"id": "03_kip_shock",   "speaker": "kip", "delivery": "mindblown", "text": "[gasp] Wait. What? Excuse me?!"},
-    {"id": "04_kip_whisper", "speaker": "kip", "delivery": "whisper",   "text": "And here's the part nobody tells you..."},
-    {"id": "05_kip_laugh",   "speaker": "kip", "delivery": "amused",    "text": "[laugh] Okay, that is actually amazing."},
+    {"id": "01_kip_hook",    "speaker": "kip", "delivery": "intrigued", "text": "Here's something strange. The lead in your pencil... isn't lead. Not even a little."},
+    {"id": "02_dex_card",    "speaker": "dex", "delivery": "deadpan",   "text": "It's graphite, mixed with clay. People just mistook it for lead. Two sources, Kip."},
+    {"id": "03_kip_shock",   "speaker": "kip", "delivery": "stunned",   "text": "[gasp] Wait... so we've been calling it the wrong thing... for centuries?"},
+    {"id": "04_kip_whisper", "speaker": "kip", "delivery": "hushed",    "text": "And here's the part nobody tells you."},
+    {"id": "05_kip_laugh",   "speaker": "kip", "delivery": "amused",    "text": "[chuckle] Okay. That's actually kind of amazing."},
     {"id": "06_dex_dry",     "speaker": "dex", "delivery": "dry",       "text": "[sigh] You say that every single day."}
   ]
 }

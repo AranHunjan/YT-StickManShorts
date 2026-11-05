@@ -1,4 +1,4 @@
-# Character bible (v1, for review)
+# Character bible (v2, for review)
 
 Everything here is a proposal. Change anything, and the rig code follows this file.
 
@@ -6,7 +6,7 @@ Everything here is a proposal. Change anything, and the rig code follows this fi
 
 **Kip**, a curious stickman who is sure he already knows how the world works, keeps finding out the wild true story behind everyday things. **Dex**, his deadpan friend, always brings the receipts.
 
-Working channel name: **Stick to the Facts**. Check that the name and handle are free on YouTube, TikTok and Instagram before we commit. Backups: "Kip Finds Out", "The Everyday Files".
+Channel name (recommended): **Stickly Speaking** (`@sticklyspeaking`), with the tagline "We stick to the facts." It's a pun on "strictly speaking" (being precise about facts) plus stick figures. A web search found no existing channel by that name, but confirm the handle is free on YouTube, TikTok and Instagram before we commit. Backups: "Stick to the Facts" (clearer, but a common phrase, so harder to own in search), "Kip Finds Out". Every video carries a burned-in watermark with the name and handle; see `packages/animator/src/style/brand.ts`.
 
 ## Kip (the lead)
 
@@ -18,7 +18,7 @@ Working channel name: **Stick to the Facts**. Check that the name and handle are
 | 1. The cowlick | One curl of hair on top that works as an **emotion meter**. It springs straight up when he's mind-blown, droops when he's sad, bends into a question mark when he's confused, and wiggles when he's excited. Readable even as a tiny thumbnail. |
 | 2. The orange scarf | Brand colour (`#FF6B1A`). Its tail flows when he moves, so the screen is never static. |
 | Catchphrase | "Excuse me?!" at the mind-blown moment. Used in about half the episodes, never every time. |
-| Voice | Energetic, warm, fast-talking, a slightly raspy late-20s voice. Expressive: gasps, laughs, whispers. |
+| Voice | General American, late 20s. Warm, low-mid pitch (target 100 to 135 Hz), intriguing storyteller energy: curious and lively through pace and intonation, never loud. Not nasal or whiny, and deliberately unlike the high-pitched v1 voice. See [VOICE.md](VOICE.md). |
 
 ## Dex (the sidekick)
 
@@ -27,7 +27,7 @@ Working channel name: **Stick to the Facts**. Check that the name and handle are
 | Role | The calm expert. Corrects Kip, delivers the key fact, and holds up an **index card with the source**. Our two-source rule becomes an on-screen gag that also builds trust. |
 | Personality | Deadpan, unflappable, quietly enjoys Kip's chaos. Dry one-liners. Says "Actually..." and means it. |
 | Signature look | Taller and thinner than Kip, round glasses, teal bow tie (`#13A0A0`), carries index cards. |
-| Voice | Low, calm, dry, measured, with a hint of amusement. |
+| Voice | General American, late 30s. Low, calm, velvety (target 80 to 115 Hz), slower (125 to 155 words per minute), dry, with a hint of amusement. |
 | Screen time | 1 to 3 lines per episode. Some episodes are Kip alone, for variety. |
 
 ## How they play together (story engine)

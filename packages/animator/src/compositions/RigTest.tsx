@@ -8,7 +8,8 @@ import type {Pose} from '../rig/types';
 import {Caption} from '../scene/Caption';
 import {Burst, IndexCard, SafeZones} from '../scene/Effects';
 import {BoilDefs, Paper} from '../scene/Paper';
-import {C, FONT, H, W} from '../style/theme';
+import {Watermark} from '../scene/Watermark';
+import {C, H, W} from '../style/theme';
 
 const GROUND = 1440;
 const KIP_X = 390;
@@ -110,23 +111,7 @@ export const RigTest: React.FC<{showSafeZones?: boolean}> = ({showSafeZones = fa
         {showSafeZones ? <SafeZones w={W} h={H} /> : null}
       </svg>
 
-      <div
-        style={{
-          position: 'absolute',
-          left: 130,
-          top: 190,
-          padding: '10px 22px',
-          background: C.ink,
-          color: C.paper,
-          fontFamily: FONT,
-          fontWeight: 800,
-          fontSize: 34,
-          borderRadius: 14,
-          transform: 'rotate(-2deg)',
-        }}
-      >
-        STICK TO THE FACTS <span style={{color: C.hi}}>#000</span>
-      </div>
+      <Watermark episode={0} />
 
       <Caption text="Hi! I'm *KIP.*" from={50} to={94} y={540} />
       <Caption text="...and I'm *DEX.*" from={98} to={130} y={540} />

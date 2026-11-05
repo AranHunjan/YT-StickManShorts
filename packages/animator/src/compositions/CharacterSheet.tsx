@@ -7,6 +7,7 @@ import {Stickman} from '../rig/Stickman';
 import {EXPRESSIONS, type CharacterSpec, type Expression, type Pose} from '../rig/types';
 import {IndexCard} from '../scene/Effects';
 import {Paper} from '../scene/Paper';
+import {BRAND} from '../style/brand';
 import {C, FONT} from '../style/theme';
 
 const SW = 1920;
@@ -39,7 +40,7 @@ export const CharacterSheet: React.FC = () => {
         <Paper w={SW} h={SH} marginX={70} />
 
         <Label x={110} y={118} size={78} anchor="start" weight={800}>KIP & DEX</Label>
-        <Label x={112} y={162} size={28} anchor="start">Character sheet v1 · working title: Stick to the Facts</Label>
+        <Label x={112} y={162} size={28} anchor="start">{`Character sheet v2 · ${BRAND.name} · ${BRAND.handle}`}</Label>
 
         {/* Hero figures */}
         <Mini spec={KIP} p={pose('stand', {head: 4})} expr="happy" cx={330} gy={ground} s={1} />

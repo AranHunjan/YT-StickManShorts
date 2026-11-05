@@ -6,10 +6,11 @@ engine's Python. See tools/voice/README.md.
 
 Engines:
   kokoro      Kokoro-82M, built-in voices (several candidates per character)
-  qwen        Qwen3-TTS VoiceDesign: invents each voice from a text description,
-              and also writes a reference clip per character into refs/
-  chatterbox  Chatterbox (exaggeration dial). Uses refs/<speaker>.wav if present
-              (voice cloning), otherwise its built-in voice
+  qwen        Qwen3-TTS VoiceDesign: invents each voice from a text description
+              (one per candidate design a, b, ...) and saves a reference clip per
+              character and candidate into refs/<speaker>_<variant>.wav
+  chatterbox  Chatterbox (exaggeration dial). Clones every candidate whose refs
+              exist (folders chatterbox-clone-a, -b, ...), else its built-in voice
   turbo       Chatterbox Turbo (inline [laugh]/[gasp]/[sigh] tags). Same refs rule
 
 Usage:
@@ -110,7 +111,12 @@ def run_kokoro(cfg, lines, out, device):
     t.report("kokoro")
 
 
-def run_qwen(cfg, lines, out, device):
+def designs_of(voice):
+    """Candidate voice descriptions for a character: {"a": "...", "b": "..."}."""
+    return voice.get("designs") or {"a": voice["design"]}
+
+
+def run_qwen(cfg, lines, out, device, refs_only=False):
     import torch
     from qwen_tts import Qwen3TTSModel
     # RTX 20-series (Turing) has no fast bfloat16, so use float16 on CUDA.
@@ -121,49 +127,62 @@ def run_qwen(cfg, lines, out, device):
         dtype=dtype,
     )
     t = Timer()
-    # Reference clips: one neutral-ish read per character, used later for cloning.
-    for spk, v in cfg["voices"].items():
-        t0 = time.time()
-        wavs, sr = model.generate_voice_design(text=v["reference_text"], instruct=v["design"] + " Natural, friendly, conversational read.", language="English")
-        t.add(time.time() - t0, len(wavs[0]), sr)
-        save(out / "refs" / f"{spk}.wav", wavs[0], sr)
-        print("qwen reference", spk)
-    for ln in lines:
-        v = cfg["voices"][ln["speaker"]]
-        d = cfg["delivery"][ln["delivery"]]
-        t0 = time.time()
-        wavs, sr = model.generate_voice_design(text=strip_tags(ln["text"]), instruct=f"{v['design']} Delivery: {d['instruct']}.", language="English")
-        t.add(time.time() - t0, len(wavs[0]), sr)
-        save(out / "qwen" / f"{ln['id']}.wav", wavs[0], sr)
-        print("qwen", ln["id"])
+    variants = sorted({v for voice in cfg["voices"].values() for v in designs_of(voice)})
+    # Reference clips: one read per character and candidate design. Design runs are
+    # random, so the voice is fixed by saving this clip and cloning it from then on.
+    for spk, voice in cfg["voices"].items():
+        for var, design in designs_of(voice).items():
+            t0 = time.time()
+            wavs, sr = model.generate_voice_design(text=voice["reference_text"], instruct=design + " Natural, conversational read.", language="English")
+            t.add(time.time() - t0, len(wavs[0]), sr)
+            save(out / "refs" / f"{spk}_{var}.wav", wavs[0], sr)
+            print("qwen reference", spk, var)
+    if not refs_only:
+        for var in variants:
+            for ln in lines:
+                voice = cfg["voices"][ln["speaker"]]
+                design = designs_of(voice).get(var) or next(iter(designs_of(voice).values()))
+                d = cfg["delivery"][ln["delivery"]]
+                t0 = time.time()
+                wavs, sr = model.generate_voice_design(text=strip_tags(ln["text"]), instruct=f"{design} Delivery: {d['instruct']}.", language="English")
+                t.add(time.time() - t0, len(wavs[0]), sr)
+                save(out / f"qwen-{var}" / f"{ln['id']}.wav", wavs[0], sr)
+                print("qwen", var, ln["id"])
     t.report("qwen")
 
 
-def run_chatterbox(cfg, lines, out, device, turbo):
+def run_chatterbox(cfg, lines, out, device, turbo, only_variant=None):
     if turbo:
         from chatterbox.tts_turbo import ChatterboxTurboTTS as Model
     else:
         from chatterbox.tts import ChatterboxTTS as Model
     model = Model.from_pretrained(device=device)
     name = "turbo" if turbo else "chatterbox"
-    refs = {spk: out / "refs" / f"{spk}.wav" for spk in cfg["voices"]}
-    cloned = all(p.exists() for p in refs.values())
-    tag = f"{name}-clone" if cloned else f"{name}-builtin"
-    print(f"[{name}] voices: {'cloned from out/.../refs' if cloned else 'built-in (run --engine qwen first to clone designed voices)'}")
+    speakers = list(cfg["voices"])
+    variants = sorted({v for voice in cfg["voices"].values() for v in designs_of(voice)})
+    if only_variant:
+        variants = [only_variant]
+    # A variant is usable once every character has a reference clip for it.
+    ready = [v for v in variants if all((out / "refs" / f"{spk}_{v}.wav").exists() for spk in speakers)]
+    runs = [(f"{name}-clone-{v}", {spk: out / "refs" / f"{spk}_{v}.wav" for spk in speakers}) for v in ready]
+    if not runs:
+        print(f"[{name}] no designed reference clips yet: using the built-in voice (run --engine qwen first)")
+        runs = [(f"{name}-builtin", None)]
     t = Timer()
-    for ln in lines:
-        d = cfg["delivery"][ln["delivery"]]
-        kw = {}
-        if cloned:
-            kw["audio_prompt_path"] = str(refs[ln["speaker"]])
-        text = ln["text"] if turbo else strip_tags(ln["text"])
-        if not turbo:
-            kw.update(exaggeration=d["exaggeration"], cfg_weight=d["cfg_weight"])
-        t0 = time.time()
-        wav = model.generate(text, **kw)
-        t.add(time.time() - t0, wav.shape[-1], model.sr)
-        save(out / tag / f"{ln['id']}.wav", wav, model.sr)
-        print(name, ln["id"])
+    for tag, refs in runs:
+        for ln in lines:
+            d = cfg["delivery"][ln["delivery"]]
+            kw = {}
+            if refs:
+                kw["audio_prompt_path"] = str(refs[ln["speaker"]])
+            text = ln["text"] if turbo else strip_tags(ln["text"])
+            if not turbo:
+                kw.update(exaggeration=d["exaggeration"], cfg_weight=d["cfg_weight"])
+            t0 = time.time()
+            wav = model.generate(text, **kw)
+            t.add(time.time() - t0, wav.shape[-1], model.sr)
+            save(out / tag / f"{ln['id']}.wav", wav, model.sr)
+            print(tag, ln["id"])
     t.report(name)
 
 
@@ -202,6 +221,8 @@ def main():
     ap.add_argument("--out", default=str(HERE.parent.parent / "out" / "voice-bakeoff"))
     ap.add_argument("--device", default="auto")
     ap.add_argument("--only", help="comma-separated line ids")
+    ap.add_argument("--variant", help="clone only this candidate voice (a, b, ...)")
+    ap.add_argument("--refs-only", action="store_true", help="qwen: only design the reference clips")
     args = ap.parse_args()
     out = Path(args.out)
 
@@ -222,9 +243,9 @@ def main():
     if args.engine == "kokoro":
         run_kokoro(cfg, lines, out, device)
     elif args.engine == "qwen":
-        run_qwen(cfg, lines, out, device)
+        run_qwen(cfg, lines, out, device, refs_only=args.refs_only)
     else:
-        run_chatterbox(cfg, lines, out, device, turbo=args.engine == "turbo")
+        run_chatterbox(cfg, lines, out, device, turbo=args.engine == "turbo", only_variant=args.variant)
 
 
 if __name__ == "__main__":
