@@ -1,0 +1,112 @@
+[
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/scribble.wav",
+    "at": 0.671,
+    "gain_db": -10
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/pop.wav",
+    "at": 4.206,
+    "gain_db": -6
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/erase.wav",
+    "at": 8.016,
+    "gain_db": -10
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/pop.wav",
+    "at": 12.475,
+    "gain_db": -6
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/thud.wav",
+    "at": 16.22,
+    "gain_db": -6
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/whoosh.wav",
+    "at": 17.56,
+    "gain_db": -12
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/boing.wav",
+    "at": 22.729,
+    "gain_db": -9
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/erase.wav",
+    "at": 24.449,
+    "gain_db": -10
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/pop.wav",
+    "at": 29.295,
+    "gain_db": -6
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/whoosh.wav",
+    "at": 32.27,
+    "gain_db": -12
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/tick.wav",
+    "at": 39.62,
+    "gain_db": -8
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/tick.wav",
+    "at": 40.02,
+    "gain_db": -8
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/tick.wav",
+    "at": 40.421,
+    "gain_db": -8
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/tick.wav",
+    "at": 40.821,
+    "gain_db": -8
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/tick.wav",
+    "at": 41.222,
+    "gain_db": -8
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/tick.wav",
+    "at": 41.623,
+    "gain_db": -8
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/ding.wav",
+    "at": 41.89,
+    "gain_db": -10
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/sparkle.wav",
+    "at": 43.683,
+    "gain_db": -8
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/pop.wav",
+    "at": 47.101,
+    "gain_db": -6
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/pop.wav",
+    "at": 48.194,
+    "gain_db": -6
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/boing.wav",
+    "at": 49.286,
+    "gain_db": -8
+  },
+  {
+    "file": "/home/user/YT-StickManShorts/assets/sfx/tick.wav",
+    "at": 52.247,
+    "gain_db": -8
+  }
+]

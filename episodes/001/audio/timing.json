@@ -1,0 +1,104 @@
+{
+  "duration": 55.169,
+  "lines": [
+    {
+      "id": "L01",
+      "speaker": "kip",
+      "delivery": "intrigued",
+      "start": 0.35,
+      "end": 5.705,
+      "text": "For hundreds of years, if you made a mistake in pencil... you fixed it with bread.",
+      "caption": "You fixed it with *BREAD.*"
+    },
+    {
+      "id": "L02",
+      "speaker": "dex",
+      "delivery": "deadpan",
+      "start": 5.985,
+      "end": 11.789,
+      "text": "Bread crumbs. Rolled into a little ball, they lifted the pencil right off the page.",
+      "caption": "Bread *crumbs.*"
+    },
+    {
+      "id": "L03",
+      "speaker": "kip",
+      "delivery": "amused",
+      "start": 12.069,
+      "end": 15.453,
+      "text": "So every desk had... a little sandwich on it?",
+      "caption": "Every desk had a *sandwich?*"
+    },
+    {
+      "id": "L04",
+      "speaker": "dex",
+      "delivery": "deadpan",
+      "start": 15.733,
+      "end": 21.824,
+      "text": "Then, in seventeen seventy, a scientist named Joseph Priestley wrote down something odd.",
+      "caption": "Then came *1770.*"
+    },
+    {
+      "id": "L05",
+      "speaker": "kip",
+      "delivery": "hushed",
+      "start": 22.104,
+      "end": 27.315,
+      "text": "A stretchy tree gum... that wiped pencil marks off paper. Better than bread.",
+      "caption": "A stretchy *tree gum.*"
+    },
+    {
+      "id": "L06",
+      "speaker": "dex",
+      "delivery": "deadpan",
+      "start": 27.595,
+      "end": 36.095,
+      "text": "An instrument maker, Edward Nairne, sold little cubes of it. He claimed he grabbed it by accident, instead of his bread crumbs.",
+      "caption": "Grabbed by *accident?*"
+    },
+    {
+      "id": "L07",
+      "speaker": "kip",
+      "delivery": "intrigued",
+      "start": 36.375,
+      "end": 38.672,
+      "text": "And this new stuff needed a name...",
+      "caption": "It needed a *name.*"
+    },
+    {
+      "id": "L08",
+      "speaker": "dex",
+      "delivery": "deadpan",
+      "start": 38.952,
+      "end": 43.403,
+      "text": "So they named it after what it did. It rubbed things out.",
+      "caption": "It *RUBBED* things out."
+    },
+    {
+      "id": "L09",
+      "speaker": "kip",
+      "delivery": "stunned",
+      "start": 43.683,
+      "end": 46.722,
+      "text": "Wait... rubber is called rubber... because it erased pencil?",
+      "caption": "*RUBBER* = it rubs out?!"
+    },
+    {
+      "id": "L10",
+      "speaker": "kip",
+      "delivery": "amused",
+      "start": 47.002,
+      "end": 51.967,
+      "text": "Car tires. Rubber bands. Rubber ducks. All named after... fixing mistakes.",
+      "caption": "Named after *fixing mistakes.*"
+    },
+    {
+      "id": "L11",
+      "speaker": "dex",
+      "delivery": "dry",
+      "start": 52.247,
+      "end": 54.89,
+      "text": "Two sources, Kip. Bread not included.",
+      "caption": "Two sources. *Bread not included.*"
+    }
+  ]
+}

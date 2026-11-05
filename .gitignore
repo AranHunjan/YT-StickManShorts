@@ -6,3 +6,6 @@ __pycache__/
 *.pyc
 .env
 episodes/*/audio/takes/
+episodes/*/render.mp4
+episodes/*/final.mp4
+episodes/*/audio/mix.wav
