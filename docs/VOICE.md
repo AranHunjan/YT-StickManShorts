@@ -62,10 +62,28 @@ Kip A and Dex A were only 1.4 semitones apart, and Dex talked faster than Kip. S
 
 The exaggeration dial is capped at 0.6 so nothing gets loud. Each delivery's settings are in `tools/voice/lines.json`.
 
+## Final lines (v2, Chatterbox + pace normalization)
+
+| | Pitch | Range | WPM | Score |
+|---|---|---|---|---|
+| Kip | 135 Hz | 12.6 st | 153 | 97 |
+| Dex | 91 Hz | 6.9 st | 155 | 95 |
+
+The two are about 7 semitones apart in delivered lines. Expressive lines sit higher than the calm reference read, which is normal.
+
+**Pace normalization** (`tools/voice/pace.py`): generation pace is random, so each line is time-stretched with pitch unchanged into the character's words-per-minute band, capped at 15%. Dex went from 178 to 155 wpm.
+
+We also tried lowering `cfg_weight` to slow Dex down. It made him *faster* (187 wpm) and erratic, so we don't use it.
+
 ## Quality gate
 
 Voice models sometimes produce a bad take: whispered, garbled, or the wrong pitch.
 - `analyze.py` flags any take with too little voiced speech as **BAD**.
 - In v1, one of Dex's lines failed this way in both clone engines.
 
-Production rule: generate 3 takes per line, drop the bad ones, keep the take closest to the character's targets, and then the human review.
+Production rule:
+1. Generate 3 takes per line.
+2. Drop the bad ones.
+3. Pace-normalize the rest.
+4. Keep the take closest to the character's targets.
+5. Then the human review.
