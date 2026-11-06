@@ -99,7 +99,9 @@ Fact channels die from errors: the comments fill up with "this is false", and tr
 
 ### 1.7 AI disclosure
 
-YouTube requires disclosure for *realistic* synthetic content, such as real people, altered real events, or realistic scenes. A stylized stickman generally falls outside that. The upload API supports a `status.containsSyntheticMedia` flag. Decide per video and disclose when in doubt. Never depict real people saying things they did not say.
+YouTube requires disclosure for *realistic* synthetic content, such as real people, altered real events, or realistic scenes. A stylized stickman generally falls outside that. The upload API supports a `status.containsSyntheticMedia` flag. Never depict real people saying things they did not say.
+
+Updated 2026-11-06: TikTok and Meta ask for a label on realistic AI audio, which covers our voices. The per-platform settings are in [AI_LABELS.md](AI_LABELS.md).
 
 ### 1.8 YouTube API facts (checked against Google's docs, Nov 2026)
 

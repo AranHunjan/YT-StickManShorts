@@ -2,6 +2,7 @@ import React from 'react';
 import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import {addPose, blink, idle, sample, talk, type Key} from '../rig/animate';
 import {DEX, KIP} from '../rig/characters';
+import {clampPose, gestureDelta, type Move} from '../rig/gestures';
 import {POSES, STAND} from '../rig/poses';
 import {Stickman} from '../rig/Stickman';
 import type {Expression, Pose} from '../rig/types';
@@ -14,7 +15,7 @@ import {Paper as NotebookPaper} from '../scene/Paper';
 import {Watermark} from '../scene/Watermark';
 import {C, H, W} from '../style/theme';
 
-export type Timing = {duration: number; lines: {id: string; speaker: string; delivery: string; start: number; end: number; text: string; caption?: string; words?: TimedWord[]}[]};
+export type Timing = {duration: number; end_hold?: number; lines: {id: string; speaker: string; delivery: string; start: number; end: number; text: string; caption?: string; words?: TimedWord[]}[]};
 type PoseRef = [string, string];
 export type Beats = {
   lines: Record<string, {kip: PoseRef; dex: PoseRef}>;
@@ -23,41 +24,79 @@ export type Beats = {
   kipHold?: Record<string, [string, string]>;
   dexCard?: {lines: string[]; in: string; out: string};
   sfx: [string, string, number][];
+  moves?: Move[]; // mid-line reactions and gestures (rig/gestures.ts)
 };
 
 const GROUND = 1440;
 const KIP_X = 350;
 const DEX_X = 730;
 const CHAR_SCALE = 1.2;
-const TAIL = 0.9; // seconds held after the last line
+const TAIL = 0.9; // seconds held after the last line, unless timing.end_hold says otherwise (build.py)
 const PROP_SCALE = 1.3; // props read bigger on a phone than at design size
 const PROP_DY = -48; // keep scaled props clear of the characters' heads
 
 /** Resolve "L05@0.45" (or "END") to seconds using the voice timing. */
 export function at(timing: Timing, ref: string): number {
-  if (ref === 'END') return timing.duration + TAIL;
+  if (ref === 'END') return timing.duration + (timing.end_hold ?? TAIL);
   const [id, frac] = ref.split('@');
   const ln = timing.lines.find((l) => l.id === id);
   if (!ln) throw new Error(`unknown line ${id}`);
   return ln.start + (ln.end - ln.start) * Number(frac ?? 0);
 }
 
-export const episodeFrames = (timing: Timing, fps: number) => Math.ceil((timing.duration + TAIL) * fps);
+export const episodeFrames = (timing: Timing, fps: number) => Math.ceil((timing.duration + (timing.end_hold ?? TAIL)) * fps);
 
 const poseOf = (name: string): Partial<Pose> => (POSES as Record<string, Partial<Pose>>)[name] ?? {};
 
-/** Keyframes: hold each line's pose, switching quickly at the line start. */
-function track(timing: Timing, beats: Beats, who: 'kip' | 'dex', x: number, fps: number): Key[] {
-  const keys: Key[] = [{f: 0, p: {...STAND, x, ...poseOf(beats.lines[timing.lines[0].id][who][0])}, expr: beats.lines[timing.lines[0].id][who][1] as Expression}];
-  timing.lines.forEach((ln, i) => {
-    if (i === 0) return;
-    const [pose, expr] = beats.lines[ln.id][who];
-    const prev = beats.lines[timing.lines[i - 1].id][who][0];
-    const f = Math.round(ln.start * fps);
-    keys.push({f: Math.max(f - 3, 1), p: {...STAND, x, ...poseOf(prev)}});
-    keys.push({f: f + 7, p: {...STAND, x, ...poseOf(pose)}, e: 'outBack', expr: expr as Expression});
-  });
+type PoseEvent = {t: number; pose: string; expr?: string};
+
+/** Pose changes in time order: every line start, plus mid-line "moves" that switch pose. */
+function poseEvents(timing: Timing, beats: Beats, who: 'kip' | 'dex'): PoseEvent[] {
+  const ev: PoseEvent[] = timing.lines.map((ln) => ({t: ln.start, pose: beats.lines[ln.id][who][0], expr: beats.lines[ln.id][who][1]}));
+  for (const m of beats.moves ?? []) if (m.who === who && m.pose) ev.push({t: at(timing, m.at), pose: m.pose, expr: m.expr});
+  return ev.sort((a, b) => a.t - b.t);
+}
+
+/** Keyframes: hold each pose, switching quickly (3 frames before to 7 after) at each change. */
+function track(ev: PoseEvent[], x: number, fps: number): Key[] {
+  const keys: Key[] = [{f: 0, p: {...STAND, x, ...poseOf(ev[0].pose)}, expr: ev[0].expr as Expression}];
+  let arrived = 0;
+  for (let i = 1; i < ev.length; i++) {
+    const f = Math.round(ev[i].t * fps);
+    const hold = Math.max(f - 3, arrived + 1, 1);
+    arrived = Math.max(f + 7, hold + 2);
+    keys.push({f: hold, p: {...STAND, x, ...poseOf(ev[i - 1].pose)}});
+    keys.push({f: arrived, p: {...STAND, x, ...poseOf(ev[i].pose)}, e: 'outBack', expr: ev[i].expr as Expression});
+  }
   return keys;
+}
+
+/** The expression at `frame`: the latest from the pose keys, or a later expression-only move. */
+function exprAt(keys: Key[], moves: Move[], who: 'kip' | 'dex', timing: Timing, fps: number, frame: number): Expression {
+  let best = -1;
+  let e: Expression = 'neutral';
+  for (const k of keys) {
+    if (k.expr && k.f <= frame && k.f >= best) {
+      best = k.f;
+      e = k.expr;
+    }
+  }
+  for (const m of moves) {
+    if (m.who !== who || !m.expr || m.pose) continue;
+    const f = Math.round(at(timing, m.at) * fps);
+    if (f <= frame && f >= best) {
+      best = f;
+      e = m.expr as Expression;
+    }
+  }
+  return e;
+}
+
+/** The pose a character is in at `sec` (switches 0.12 s early, like the captions). */
+function poseNow(ev: PoseEvent[], sec: number): string {
+  let name = ev[0].pose;
+  for (const e of ev) if (sec >= e.t - 0.12) name = e.pose;
+  return name;
 }
 
 export const Episode: React.FC<{timing: Timing; beats: Beats; episode: number}> = ({timing, beats, episode}) => {
@@ -66,19 +105,28 @@ export const Episode: React.FC<{timing: Timing; beats: Beats; episode: number}> 
   const sec = frame / fps;
   const T = (ref: string) => at(timing, ref);
   const F = (ref: string) => Math.round(T(ref) * fps);
-  const cur = [...timing.lines].reverse().find((l) => sec >= l.start - 0.12) ?? timing.lines[0];
-
-  // Characters
-  const kipS = sample(STAND, track(timing, beats, 'kip', KIP_X, fps), frame);
-  const dexS = sample(STAND, track(timing, beats, 'dex', DEX_X, fps), frame);
+  // Characters: line poses, mid-line moves, breathing, talking, then gestures on top.
+  const moves = beats.moves ?? [];
+  const kipEv = poseEvents(timing, beats, 'kip');
+  const dexEv = poseEvents(timing, beats, 'dex');
+  const kipKeys = track(kipEv, KIP_X, fps);
+  const dexKeys = track(dexEv, DEX_X, fps);
+  const kipS = sample(STAND, kipKeys, frame);
+  const dexS = sample(STAND, dexKeys, frame);
+  const kipExpr = exprAt(kipKeys, moves, 'kip', timing, fps, frame);
+  const dexExpr = exprAt(dexKeys, moves, 'dex', timing, fps, frame);
   let kp = addPose(kipS.pose, idle(frame, 1));
   let dp = addPose(dexS.pose, idle(frame, 2.5));
   const talking = (who: string) => timing.lines.some((l) => l.speaker === who && sec >= l.start && sec <= l.end);
   if (talking('kip')) kp = {...kp, mouth: talk(frame, 'kip')};
   if (talking('dex')) dp = {...dp, mouth: talk(frame, 'dex') * 0.7};
-  const kipPose = beats.lines[cur.id].kip[0];
+  const kipPose = poseNow(kipEv, sec);
   if (kipPose === 'think') kp = {...kp, hairQ: 1};
   if (kipPose === 'mindblown') kp = {...kp, hair: 1};
+  const kd = gestureDelta(moves, 'kip', sec, T);
+  if (kd) kp = clampPose(addPose(kp, kd));
+  const dd = gestureDelta(moves, 'dex', sec, T);
+  if (dd) dp = clampPose(addPose(dp, dd));
 
   // Camera: rock steady (no wobble filter, no shake); only a very slow push-in.
   const burstF = beats.burst ? F(beats.burst) : -999;
@@ -145,10 +193,10 @@ export const Episode: React.FC<{timing: Timing; beats: Beats; episode: number}> 
           <ellipse cx={dp.x} cy={GROUND + 10} rx={110} ry={14} fill={C.ink} opacity={0.08} />
           {beats.burst ? <Burst x={kipHead.x} y={kipHead.y} frame={frame} from={burstF} fps={fps} r={150} /> : null}
           <g>
-            <Stickman spec={DEX} pose={dp} expr={dexS.expr} groundY={GROUND} frame={frame} facing={-1} seed={2} blink={blink(frame, 2)}>
+            <Stickman spec={DEX} pose={dp} expr={dexExpr} groundY={GROUND} frame={frame} facing={-1} seed={2} blink={blink(frame, 2)}>
               {(j) => (cardOn && card ? <IndexCard x={j.armF.end.x - 24} y={j.armF.end.y - 62} rot={6} scale={0.8} lines={card.lines} /> : null)}
             </Stickman>
-            <Stickman spec={KIP} pose={kp} expr={kipS.expr} groundY={GROUND} frame={frame} seed={1} blink={blink(frame, 1)}>
+            <Stickman spec={KIP} pose={kp} expr={kipExpr} groundY={GROUND} frame={frame} seed={1} blink={blink(frame, 1)}>
               {(j) =>
                 pencilOn ? (
                   <g transform={`translate(${j.armF.end.x} ${j.armF.end.y}) rotate(${-25 + 6 * Math.sin(frame * 0.5)}) scale(0.55)`}>

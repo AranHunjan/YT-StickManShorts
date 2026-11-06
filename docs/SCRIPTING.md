@@ -20,9 +20,11 @@ This is condensed from the research agent's report (2026-11-05). Sources are inl
 10. **Captions are subtitles, not spoilers.**
     - Sync them word by word, 1 to 3 words at a time, and never show words before they're spoken.
     - Give each speaker a colour, and give the punchline its own card ([BBC subtitle guidelines](https://www.bbc.co.uk/accessibility/forproducts/guides/subtitles/)).
-11. **Length: 115 to 130 words** at a calm ~140 wpm, which is 50 to 56 s of speech.
+11. **Length: just over a minute,** 60.3 to 61 s with the end hold, so TikTok counts it as over 1 minute (`channel.json`). That's 134 to 142 words; episode 001 was 135 words and 59.2 s.
 
 ## Hook formulas
+
+Since 2026-11-06 the opener is being tested ([HOOK_TEST.md](HOOK_TEST.md)): formula 1 is the "question" style, and formulas 2 to 7 and 9 are the "bold" style, where the first words carry the surprise and no name or filler comes first. Each episode's style comes from `tools/episode/plan_next.py`.
 
 1. "Hey Dex... why does your [object] have [odd detail]?"
 2. "That [detail] isn't for the [object]. It's for *you*."
@@ -32,8 +34,9 @@ This is condensed from the research agent's report (2026-11-05). Sources are inl
 6. "Your [object] still has [detail] for something almost nobody owns anymore."
 7. "[Object] looks like this because of [one guy in 18xx]."
 8. Visual first: frame 1 is the odd detail, big, with the question as the first caption.
+9. "You've been [using object] wrong your whole life." (the episode's best payoff, moved to the front)
 
-## Beat template (50 to 58 s, 115 to 130 words)
+## Beat template (about 59 s of speech, 134 to 142 words)
 
 | # | Beat | Time | Words | Rules |
 |---|---|---|---|---|
@@ -45,17 +48,26 @@ This is condensed from the research agent's report (2026-11-05). Sources are inl
 | 6 | Twist ("here's the best part") | 32-46 s | 22-30 | A second payoff, ideally something to try |
 | 7 | Closing joke + loop | 46-56 s | 12-18 | A callback; the last line runs into line 1; cut within 0.5 s |
 
+## Variety
+
+Two episodes about different objects can still feel identical if they're told the same way. Each episode records its **shape** in `shape.json`: the hook formula, the story structure, the humour, how Kip and Dex interact, the visual presentation and the ending. `python tools/episode/variety.py --vocab` lists the usual values for each.
+
+- Change at least 2 of the 6 from each of the last 3 episodes; the linter blocks an exact copy and warns at 5 of 6.
+- Never use the same hook formula, structure, visual style or ending three episodes in a row.
+- The brand doesn't vary: Kip the curious know-it-all, Dex the warm explainer, verified facts, a loop at the end.
+
 ## Checklist before recording
 
-- [ ] Line 1 is a question of 10 words or fewer, naming the object and its odd detail.
+- [ ] Line 1 follows the episode's hook style: 10 words or fewer, naming the object and its odd detail. A bold hook carries the surprise in its first words.
+- [ ] The shape differs from recent episodes (`python tools/episode/variety.py N`).
 - [ ] Mute test: frame 1 plus the caption explain the topic on their own.
 - [ ] Kip's wrong theory is one line, 4 s or less, and easy to animate.
 - [ ] Dex is amused and kind, with no sneer and no filler.
 - [ ] The stakes or hint line lands by about 10 s.
 - [ ] Beats join with but/so, never "and also".
 - [ ] A second payoff comes after the reveal.
-- [ ] Every fact has 2 sources, and the script hedges where sources disagree.
-- [ ] 115 to 130 words.
+- [ ] Every fact is in the claim ledger with 2 sources (`python tools/episode/claims.py N`), and the script keeps each claim's qualification (which date it is, where sources disagree).
+- [ ] 134 to 142 words (`channel.json`).
 - [ ] Delete test: cut any line the story still works without.
 - [ ] No intro and no "subscribe". The end loops into the start.
 - [ ] Captions are word-synced, coloured by speaker, with keywords highlighted.

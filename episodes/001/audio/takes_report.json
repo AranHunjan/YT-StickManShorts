@@ -2,17 +2,18 @@
   {
     "id": "L03",
     "speaker": "dex",
-    "take": "L03_q1.wav",
-    "score": 97,
+    "take": "L03_q10.wav",
+    "score": 100,
     "tempo": 1.0,
-    "dur_s": 5.73,
-    "pitch_hz": 150.7,
-    "range_st": 16.5,
-    "loud_sd": 7.8,
-    "voiced": 0.76,
-    "breaks": 1.57,
+    "dur_s": 5.22,
+    "pitch_hz": 152.9,
+    "range_st": 8.6,
+    "loud_sd": 7.1,
+    "voiced": 0.7,
+    "breaks": 0.96,
     "bad": false,
-    "wpm": 126
+    "wpm": 138,
+    "note": "replaced q1 (glitch 0.5 s in: 10.5% jitter, 33% shimmer in a 0.5 s window); picked by worst-window quality and pitch"
   },
   {
     "id": "L05",
@@ -60,6 +61,22 @@
     "wpm": 179
   },
   {
+    "id": "L09",
+    "speaker": "kip",
+    "take": "L09_t2.wav",
+    "score": 82,
+    "tempo": 1.0,
+    "dur_s": 1.57,
+    "pitch_hz": 133.5,
+    "range_st": 10.3,
+    "loud_sd": 6.8,
+    "voiced": 0.82,
+    "breaks": 0.64,
+    "bad": false,
+    "wpm": 115,
+    "note": "used unstretched: pace rule would stretch 8% (short line with a pause); stretch measured rougher; pause after \"rounded\" shortened by 0.2 s (silence cut, 10 ms crossfade)"
+  },
+  {
     "id": "L10",
     "speaker": "dex",
     "take": "L10_q1.wav",
@@ -88,5 +105,35 @@
     "breaks": 1.44,
     "bad": false,
     "wpm": 161
+  },
+  {
+    "id": "L13",
+    "speaker": "kip",
+    "take": "L13_t2.wav",
+    "score": 96,
+    "tempo": 1.0,
+    "dur_s": 2.69,
+    "pitch_hz": 113.6,
+    "range_st": 6.6,
+    "loud_sd": 8.0,
+    "voiced": 0.86,
+    "breaks": 2.23,
+    "bad": false,
+    "wpm": 179
+  },
+  {
+    "id": "L14",
+    "speaker": "kip",
+    "take": "L14_t1.wav",
+    "score": 94,
+    "tempo": 1.0,
+    "dur_s": 4.8,
+    "pitch_hz": 122.1,
+    "range_st": 13.1,
+    "loud_sd": 7.3,
+    "voiced": 0.79,
+    "breaks": 0.62,
+    "bad": false,
+    "wpm": 150
   }
 ]
