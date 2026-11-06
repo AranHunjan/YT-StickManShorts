@@ -103,10 +103,13 @@ def erase():
 
 
 def thud():
+    """Soft knock. The low body is felt on headphones; the ~300 Hz knock carries it on phone
+    speakers. No noise click: on small speakers it sounded like a glitch (episode 001)."""
     x = t(0.3)
-    y = np.sin(2 * np.pi * (70 + 60 * np.exp(-x * 30)) * x) * env(len(x), 0.002, 0.08)
-    y[: int(SR * 0.006)] += 0.6 * rng.standard_normal(int(SR * 0.006))
-    return norm(y, 0.85)
+    body = np.sin(2 * np.pi * (70 + 60 * np.exp(-x * 30)) * x) * env(len(x), 0.002, 0.08)
+    knock = np.sin(2 * np.pi * np.cumsum(240 + 120 * np.exp(-x * 40)) / SR) * env(len(x), 0.004, 0.035)
+    rng.standard_normal(int(SR * 0.006))  # keeps the shared generator in step so the other sounds stay identical
+    return norm(body + 0.6 * knock, 0.8)
 
 
 def sparkle():

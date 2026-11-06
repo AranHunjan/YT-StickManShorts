@@ -71,15 +71,20 @@ Note: the setup and pipeline were only tested on Linux CPU, so the first Windows
   (handled in bakeoff.py).
 - Remotion: `Config.setColorSpace('bt709')` gives correct yuv420p; fonts are bundled in public/fonts.
 - Be efficient with usage: long sessions and polling are expensive.
+- The take score is whole-line, so it misses a glitch that lasts half a second (episode 001 L03 scored 97 with
+  33% shimmer in one 0.5 s window). Check the worst 0.5 s window (Praat) and the median pitch before accepting a take.
+- Qwen takes use fixed seeds (`1000 + take number`): regenerating take 1 reproduces the same audio.
+  For fresh takes, run `qwen_voice.py` with a higher `--start`. Some Aiden takes come out pitched far too high
+  (230 Hz against his usual ~150 Hz), so check pitch.
+- The pace rule reads short lines with a dramatic "..." as slow and stretches them; keep those unstretched.
+- SFX: sub-150 Hz sounds plus a noise click read as a digital glitch on phone speakers (old thud). Give low
+  sounds a mid-range partial and no raw noise click.
 
 ## Current status and next steps
-1. **Episode 001 "Why does Heinz ketchup say 57?"** was built (59.05 s, passed QA), Dex as Aiden.
-   Engagement prompt added: L14 in `episodes/001/script.json` now reads
-   "Okay, but seriously... why {57|fifty-seven}? Drop your theory in the *comments*." (text only, not yet voiced).
-   To do on the PC:
-   - `speak.py --script episodes\001\script.json --out episodes\001\audio --only L14 --gap 0.22`
-   - `python tools\episode\build.py 1 --preview`; confirm it stays under 60 s (shorten the line or the gap if not)
-   - owner reviews
+1. **Episode 001 "Why does Heinz ketchup say 57?"** is done and approved by the owner (59.19 s, passed QA).
+   Final voicing: L14 comment prompt, Kip L09/L13 re-voiced without the old 15%/9% stretches (L09's pause
+   shortened 0.2 s), Dex L03 take q10, softer thud SFX. Line gap 0.16 s, lead 0.30 s.
+   `final.mp4` is gitignored: rebuild with `python tools\episode\build.py 1 --preview`.
 2. Upload episode 001 to all 4 platforms.
 3. Produce episodes 002+ from docs/FACT_BANK.md (tape measure, shopping cart, Coke bottle...) to build a
    posting buffer; reuse the episode 001 structure.
