@@ -19,7 +19,9 @@ One-time setup: Node.js 22, ffmpeg (`winget install Gyan.FFmpeg`), `cd packages\
    - `upload.md`: titles, descriptions and captions
 
    Claude Code writes these with you, using episode 001 as the template.
-2. **Voices:** generates several takes per line, auto-picks the best, and writes `voice.wav` + `timing.json`:
+2. **Voices:** generates several takes per line, auto-picks the best, and writes `voice.wav` + `timing.json`.
+   - Kip is voiced by Chatterbox and Dex by Qwen's "Aiden" preset; `speak.py` runs both.
+   - Word timings for the captions are added automatically.
    ```powershell
    .\tools\voice\.venvs\chatterbox\Scripts\python.exe tools\voice\speak.py --script episodes\001\script.json --out episodes\001\audio
    ```

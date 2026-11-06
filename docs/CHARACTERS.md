@@ -27,7 +27,7 @@ Channel name: **Kip N Dex**, YouTube handle **@KipNDex** (channel created 2026-1
 | Role | The friend who actually knows. Fixes Kip's theory, builds the curiosity, then serves the answer on a silver platter. Holds up an **index card with the source**; our two-source rule becomes an on-screen gag that also builds trust. |
 | Personality | **Done with Kip's know-it-all attitude, but always happy to get him to understand.** Warm, amused, a fond eye-roll ("Kip... no."), then he lights up telling the real story. Never dull, never bored. |
 | Signature look | Taller and thinner than Kip, round glasses, teal bow tie (`#13A0A0`), carries index cards. |
-| Voice | General American, late 30s. Low, calm, velvety (target 80 to 115 Hz), slower (125 to 155 words per minute), dry, with a hint of amusement. |
+| Voice | Qwen3-TTS preset "Aiden": a sunny, clear American voice, directed per line to be warm, amused and a little exasperated. Chosen by ear on 2026-11-06 after the cloned deep voice sounded glitchy; see [VOICE.md](VOICE.md). |
 | Screen time | 1 to 3 lines per episode. Some episodes are Kip alone, for variety. |
 
 ## How they play together (story engine)

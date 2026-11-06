@@ -55,12 +55,13 @@ def main():
     ap.add_argument("--lead", type=float, default=0.35, help="silence before the first line (s)")
     ap.add_argument("--device", default="auto")
     ap.add_argument("--only", help="regenerate only these line ids (comma-separated); others reuse their chosen take")
+    ap.add_argument("--qwen-takes", type=int, help="takes per line for qwen-custom voices (default: --takes)")
     args = ap.parse_args()
 
+    import os
     import numpy as np
     import soundfile as sf
     import torch
-    from chatterbox.tts import ChatterboxTTS
 
     script = json.loads(Path(args.script).read_text(encoding="utf-8"))
     deliveries = json.loads((HERE / "lines.json").read_text(encoding="utf-8"))["delivery"]
@@ -72,20 +73,52 @@ def main():
     device = args.device
     if device == "auto":
         device = "cuda" if torch.cuda.is_available() else "cpu"
-    model = ChatterboxTTS.from_pretrained(device=device)
+    voices = json.loads((Path(args.refs) / "voices.json").read_text(encoding="utf-8"))
+    engine = lambda spk: voices.get(spk, {}).get("engine", "chatterbox")
+    todo = [ln for ln in script["lines"]
+            if not (only is not None and ln["id"] not in only and (out / "lines" / f"{ln['id']}.wav").exists())]
     report = []
     t_start = time.time()
 
-    for ln in script["lines"]:
+    # Qwen preset voices run in their own environment: generate their takes up front, in batches.
+    qwen_python = os.environ.get("QWEN_PYTHON") or str(HERE / ".venvs" / "qwen" / ("Scripts/python.exe" if os.name == "nt" else "bin/python"))
+    qtakes = args.qwen_takes or args.takes
+
+    def qwen_generate(spk, ids, start):
+        v = voices[spk]
+        subprocess.run([qwen_python, str(HERE / "qwen_voice.py"), "--script", args.script, "--out", str(out),
+                        "--ids", ",".join(ids), "--speaker", v["speaker"], "--persona", v.get("persona", ""),
+                        "--takes", str(qtakes if start == 1 else 1), "--start", str(start), "--device", args.device], check=True)
+
+    for spk in {ln["speaker"] for ln in todo if engine(ln["speaker"]) == "qwen-custom"}:
+        missing = [ln["id"] for ln in todo if ln["speaker"] == spk and not list((out / "takes").glob(f"{ln['id']}_q*.wav"))]
+        if missing:
+            qwen_generate(spk, missing, 1)
+
+    model = None
+    for ln in todo:
         final = out / "lines" / f"{ln['id']}.wav"
-        if only is not None and ln["id"] not in only and final.exists():
-            continue
         spk, text = ln["speaker"], spoken(ln["text"])
         d = deliveries[ln["delivery"]]
-        ref = Path(args.refs) / f"{spk}.wav"
         best = None
+        if engine(spk) == "qwen-custom":
+            for extra in range(3):  # up to 2 extra rounds if every take is bad
+                for take in sorted((out / "takes").glob(f"{ln['id']}_q*.wav")):
+                    m = measure(take, text)
+                    s = score(spk, m) if not m["bad"] else -1
+                    if best is None or s > best[0]:
+                        best = (s, take, m)
+                if best and best[0] >= 0:
+                    break
+                n = len(list((out / "takes").glob(f"{ln['id']}_q*.wav")))
+                qwen_generate(spk, [ln["id"]], n + 1)
+            print(f"{ln['id']} ({voices[spk]['speaker']}): best {best[0]} {best[1].name}", flush=True)
+        if model is None and engine(spk) == "chatterbox":
+            from chatterbox.tts import ChatterboxTTS
+            model = ChatterboxTTS.from_pretrained(device=device)
+        ref = Path(args.refs) / voices.get(spk, {}).get("ref", f"{spk}.wav")
         attempts = 0
-        while attempts < args.takes + 2:  # up to 2 extra tries if every take is bad
+        while engine(spk) == "chatterbox" and attempts < args.takes + 2:  # up to 2 extra tries if every take is bad
             attempts += 1
             torch.manual_seed(zlib.crc32(f"{ln['id']}-{attempts}".encode()))
             wav = model.generate(text, audio_prompt_path=str(ref), exaggeration=d["exaggeration"], cfg_weight=d["cfg_weight"])

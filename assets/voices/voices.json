@@ -1,0 +1,9 @@
+{
+  "_note": "Which engine voices each character. chatterbox = clone the reference clip; qwen-custom = Qwen3-TTS 1.7B CustomVoice preset speaker with per-line instructions. See docs/VOICE.md.",
+  "kip": {"engine": "chatterbox", "ref": "kip.wav"},
+  "dex": {
+    "engine": "qwen-custom",
+    "speaker": "aiden",
+    "persona": "Warm, friendly older-brother voice: amused and a little exasperated by his friend's silly theories, but delighted to explain. Natural, expressive, smiling; never flat, never loud."
+  }
+}

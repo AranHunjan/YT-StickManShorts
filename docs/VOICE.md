@@ -113,3 +113,9 @@ Findings:
 4. Pitch-break counts did not separate "glitchy" from fine (Kip has more of them), so they're reported but not scored.
 
 Samples for listening: `docs/review/dex-voice/`.
+
+**Decision (2026-11-06): Dex = Qwen3-TTS preset "Aiden"**, picked by the owner from the dialogue samples.
+- Generated with per-line emotion instructions plus Dex's persona (`assets/voices/voices.json`).
+- Kip stays on Chatterbox with his reference clip.
+- `speak.py` runs both engines automatically. Qwen runs in its own environment: `tools/voice/.venvs/qwen`, or set `QWEN_PYTHON`.
+- Dex's measurement targets in `analyze.py` are updated for the new voice: 115-165 Hz, a lively 6-18 semitone range.

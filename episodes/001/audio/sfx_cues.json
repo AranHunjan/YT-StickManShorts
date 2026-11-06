@@ -26,72 +26,72 @@
   },
   {
     "file": "/home/user/YT-StickManShorts/assets/sfx/thud.wav",
-    "at": 11.231,
+    "at": 11.615,
     "gain_db": -6
   },
   {
     "file": "/home/user/YT-StickManShorts/assets/sfx/whoosh.wav",
-    "at": 14.515,
+    "at": 15.61,
     "gain_db": -12
   },
   {
     "file": "/home/user/YT-StickManShorts/assets/sfx/tick.wav",
-    "at": 15.602,
+    "at": 16.697,
     "gain_db": -8
   },
   {
     "file": "/home/user/YT-StickManShorts/assets/sfx/whoosh.wav",
-    "at": 15.896,
+    "at": 17.038,
     "gain_db": -12
   },
   {
     "file": "/home/user/YT-StickManShorts/assets/sfx/ding.wav",
-    "at": 24.385,
+    "at": 26.54,
     "gain_db": -10
   },
   {
     "file": "/home/user/YT-StickManShorts/assets/sfx/pop.wav",
-    "at": 30.159,
+    "at": 32.45,
     "gain_db": -9
   },
   {
     "file": "/home/user/YT-StickManShorts/assets/sfx/pop.wav",
-    "at": 30.564,
+    "at": 32.888,
     "gain_db": -9
   },
   {
     "file": "/home/user/YT-StickManShorts/assets/sfx/pop.wav",
-    "at": 30.97,
+    "at": 33.326,
     "gain_db": -9
   },
   {
     "file": "/home/user/YT-StickManShorts/assets/sfx/boing.wav",
-    "at": 32.263,
+    "at": 34.701,
     "gain_db": -9
   },
   {
     "file": "/home/user/YT-StickManShorts/assets/sfx/pop.wav",
-    "at": 35.171,
+    "at": 37.654,
     "gain_db": -8
   },
   {
     "file": "/home/user/YT-StickManShorts/assets/sfx/thud.wav",
-    "at": 43.336,
+    "at": 46.21,
     "gain_db": -5
   },
   {
     "file": "/home/user/YT-StickManShorts/assets/sfx/pop.wav",
-    "at": 46.534,
+    "at": 49.649,
     "gain_db": -6
   },
   {
     "file": "/home/user/YT-StickManShorts/assets/sfx/sparkle.wav",
-    "at": 49.236,
+    "at": 52.535,
     "gain_db": -8
   },
   {
     "file": "/home/user/YT-StickManShorts/assets/sfx/whoosh.wav",
-    "at": 52.155,
+    "at": 55.454,
     "gain_db": -12
   }
 ]

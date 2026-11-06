@@ -28,7 +28,8 @@ HERE = Path(__file__).resolve().parent
 # Targets derived in docs/VOICE.md. (lo, hi) ideal band per metric.
 TARGETS = {
     "kip": {"pitch_hz": (100, 135), "range_st": (6, 12), "wpm": (150, 180), "loud_sd": (0, 7)},
-    "dex": {"pitch_hz": (80, 115), "range_st": (4, 9), "wpm": (125, 155), "loud_sd": (0, 6)},
+    # Dex = Qwen preset "aiden" (owner's pick, 2026-11-06): brighter and livelier than v2's deep deadpan.
+    "dex": {"pitch_hz": (115, 165), "range_st": (6, 18), "wpm": (125, 160), "loud_sd": (0, 7)},
 }
 # How far outside the band a metric can be before it scores 0 (in the metric's units).
 SLACK = {"pitch_hz": 40, "range_st": 6, "wpm": 50, "loud_sd": 6}
