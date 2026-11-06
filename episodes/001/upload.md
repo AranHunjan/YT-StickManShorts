@@ -30,6 +30,7 @@ That 57 on the ketchup bottle? Basically made up. 🍅 And it hides a trick you'
 #facts #ketchup #didyouknow #lifehack #kipndex
 ```
 **First comment:** `Sources: Smithsonian; Wikipedia "Heinz 57"; TODAY (Heinz spokesperson on the tap).`
+**AI label:** on (Meta asks for it on realistic-sounding AI voices; see docs/AI_LABELS.md).
 
 ## TikTok
 

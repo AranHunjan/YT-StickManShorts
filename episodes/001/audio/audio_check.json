@@ -1,0 +1,527 @@
+{
+  "episode": "001",
+  "verdict": "warn",
+  "voice_sha1": "9c35379250c28a5990e6b21383bae648f4df45d0",
+  "duration_with_hold": 59.19,
+  "median_pitch": {
+    "kip": 127.15,
+    "dex": 153.35000000000002
+  },
+  "praat": true,
+  "transcript": true,
+  "overall": [],
+  "lines": [
+    {
+      "id": "L01",
+      "speaker": "kip",
+      "delivery": "curious",
+      "text": "Hey Dex... why does Heinz ketchup say *{57|fifty-seven}* on the bottle?",
+      "dur": 3.97,
+      "wpm": 181,
+      "pitch_hz": 115.2,
+      "range_st": 8.9,
+      "level_db": -19.1,
+      "peak_dbfs": -2.3,
+      "edge": [
+        0.03,
+        0.069
+      ],
+      "pauses": [
+        {
+          "t": 0.57,
+          "len": 0.37,
+          "after": "Dex...",
+          "kind": "punct"
+        }
+      ],
+      "heard": "Hey Dex, why does Heinz catch up, say, 57 on the bottle?",
+      "word_errors": 2,
+      "flags": [
+        {
+          "kind": "transcript",
+          "severity": "warn",
+          "detail": "2 word error(s) (5% of letters): missing ['ketchup'], heard instead/extra ['catch', 'up']"
+        }
+      ]
+    },
+    {
+      "id": "L02",
+      "speaker": "kip",
+      "delivery": "confident",
+      "text": "Wait, don't tell me. It's {57|fifty-seven} *tomatoes.* Squished into every bottle.",
+      "dur": 4.7,
+      "wpm": 153,
+      "pitch_hz": 110.7,
+      "range_st": 14.0,
+      "level_db": -17.3,
+      "peak_dbfs": -1.3,
+      "edge": [
+        0.03,
+        0.086
+      ],
+      "pauses": [
+        {
+          "t": 0.27,
+          "len": 0.19,
+          "after": "Wait,",
+          "kind": "punct"
+        },
+        {
+          "t": 2.94,
+          "len": 0.22,
+          "after": "tomatoes.",
+          "kind": "punct"
+        }
+      ],
+      "heard": "Wait, don't tell me, it's 57 tomatoes squished into every bottle.",
+      "word_errors": 0,
+      "flags": []
+    },
+    {
+      "id": "L03",
+      "speaker": "dex",
+      "delivery": "teasing",
+      "text": "Kip... no. That number's basically *made up.* And it hides a *trick.*",
+      "dur": 5.22,
+      "wpm": 138,
+      "pitch_hz": 153.8,
+      "range_st": 9.1,
+      "level_db": -18.6,
+      "peak_dbfs": -5.6,
+      "edge": [
+        0.03,
+        0.062
+      ],
+      "pauses": [
+        {
+          "t": 0.36,
+          "len": 0.49,
+          "after": "Kip...",
+          "kind": "punct"
+        },
+        {
+          "t": 1.34,
+          "len": 0.38,
+          "after": "no.",
+          "kind": "punct"
+        },
+        {
+          "t": 2.28,
+          "len": 0.19,
+          "after": "number's",
+          "kind": "mid"
+        },
+        {
+          "t": 3.48,
+          "len": 0.39,
+          "after": "up.",
+          "kind": "punct"
+        },
+        {
+          "t": 4.02,
+          "len": 0.21,
+          "after": "it",
+          "kind": "mid"
+        }
+      ],
+      "heard": "Kip, no, that number is basically made up and hides a trick.",
+      "word_errors": 1,
+      "flags": [
+        {
+          "kind": "transcript",
+          "severity": "warn",
+          "detail": "1 word error(s) (4% of letters): missing ['it'], heard instead/extra -"
+        }
+      ]
+    },
+    {
+      "id": "L04",
+      "speaker": "kip",
+      "delivery": "stunned",
+      "text": "Made up?!",
+      "dur": 0.8,
+      "wpm": 150,
+      "pitch_hz": 130.1,
+      "range_st": 4.3,
+      "level_db": -16.4,
+      "peak_dbfs": -5.6,
+      "edge": [
+        0.03,
+        0.047
+      ],
+      "pauses": [],
+      "heard": "Made up?",
+      "word_errors": 0,
+      "flags": []
+    },
+    {
+      "id": "L05",
+      "speaker": "dex",
+      "delivery": "warm",
+      "text": "In {1896|eighteen ninety-six}, Henry Heinz saw an ad on a train: *{21|twenty-one} styles* of shoes.",
+      "dur": 6.82,
+      "wpm": 150,
+      "pitch_hz": 162.0,
+      "range_st": 16.0,
+      "level_db": -18.6,
+      "peak_dbfs": -2.5,
+      "edge": [
+        0.03,
+        0.067
+      ],
+      "pauses": [
+        {
+          "t": 1.5,
+          "len": 0.22,
+          "after": "1896,",
+          "kind": "punct"
+        },
+        {
+          "t": 4.29,
+          "len": 0.77,
+          "after": "train:",
+          "kind": "punct"
+        }
+      ],
+      "heard": "In 1896, Henry Heinz saw an ad on a train, 21 styles of shoes.",
+      "word_errors": 0,
+      "flags": []
+    },
+    {
+      "id": "L06",
+      "speaker": "dex",
+      "delivery": "delighted",
+      "text": "He loved it. So he gave his company a number too: *{57|fifty-seven} varieties.*",
+      "dur": 5.47,
+      "wpm": 154,
+      "pitch_hz": 152.9,
+      "range_st": 17.3,
+      "level_db": -14.8,
+      "peak_dbfs": -2.7,
+      "edge": [
+        0.03,
+        0.012
+      ],
+      "pauses": [
+        {
+          "t": 1.19,
+          "len": 0.24,
+          "after": "it.",
+          "kind": "punct"
+        },
+        {
+          "t": 3.78,
+          "len": 0.35,
+          "after": "too:",
+          "kind": "punct"
+        }
+      ],
+      "heard": "He loved it, though he gave his company a number 2. 57 varieties",
+      "word_errors": 2,
+      "flags": [
+        {
+          "kind": "transcript",
+          "severity": "warn",
+          "detail": "2 word error(s) (16% of letters): missing ['so', 'to'], heard instead/extra ['though']"
+        }
+      ]
+    },
+    {
+      "id": "L07",
+      "speaker": "kip",
+      "delivery": "confident",
+      "text": "Because he made {57|fifty-seven} things!",
+      "dur": 2.4,
+      "wpm": 150,
+      "pitch_hz": 136.3,
+      "range_st": 8.2,
+      "level_db": -20.1,
+      "peak_dbfs": -5.4,
+      "edge": [
+        0.03,
+        0.065
+      ],
+      "pauses": [],
+      "heard": "Because he made 57 things.",
+      "word_errors": 0,
+      "flags": []
+    },
+    {
+      "id": "L08",
+      "speaker": "dex",
+      "delivery": "teasing",
+      "text": "He already made *more than {60|sixty}.*",
+      "dur": 2.18,
+      "wpm": 165,
+      "pitch_hz": 188.3,
+      "range_st": 10.3,
+      "level_db": -15.0,
+      "peak_dbfs": -4.2,
+      "edge": [
+        0.03,
+        0.07
+      ],
+      "pauses": [],
+      "heard": "He already made more than 60.",
+      "word_errors": 0,
+      "flags": []
+    },
+    {
+      "id": "L09",
+      "speaker": "kip",
+      "delivery": "stunned",
+      "text": "He rounded... *down?*",
+      "dur": 1.38,
+      "wpm": 131,
+      "pitch_hz": 131.6,
+      "range_st": 9.4,
+      "level_db": -17.2,
+      "peak_dbfs": -1.1,
+      "edge": [
+        0.03,
+        0.077
+      ],
+      "pauses": [],
+      "heard": "He rounded. Down.",
+      "word_errors": 0,
+      "flags": [
+        {
+          "kind": "rushed",
+          "severity": "info",
+          "detail": "no audible pause at 'rounded...'"
+        }
+      ]
+    },
+    {
+      "id": "L10",
+      "speaker": "dex",
+      "delivery": "warm",
+      "text": "And nobody's totally sure why he picked {57|fifty-seven}.",
+      "dur": 3.39,
+      "wpm": 159,
+      "pitch_hz": 133.1,
+      "range_st": 8.9,
+      "level_db": -17.8,
+      "peak_dbfs": -1.1,
+      "edge": [
+        0.04,
+        0.083
+      ],
+      "pauses": [
+        {
+          "t": 2.36,
+          "len": 0.18,
+          "after": "picked",
+          "kind": "mid"
+        }
+      ],
+      "heard": "And nobody's totally sure why he picked 57.",
+      "word_errors": 0,
+      "flags": []
+    },
+    {
+      "id": "L11",
+      "speaker": "kip",
+      "delivery": "amused",
+      "text": "So it's... a *vibe.*",
+      "dur": 1.41,
+      "wpm": 170,
+      "pitch_hz": 144.4,
+      "range_st": 9.2,
+      "level_db": -16.9,
+      "peak_dbfs": -2.5,
+      "edge": [
+        0.03,
+        0.073
+      ],
+      "pauses": [],
+      "heard": "So it's a vibe.",
+      "word_errors": 0,
+      "flags": [
+        {
+          "kind": "rushed",
+          "severity": "info",
+          "detail": "no audible pause at 'it's...'"
+        }
+      ]
+    },
+    {
+      "id": "L12",
+      "speaker": "dex",
+      "delivery": "delighted",
+      "text": "But here's the best part. On glass bottles, that *{57|fifty-seven}* is where Heinz says to *tap.* One firm tap there, and the ketchup comes out way easier.",
+      "dur": 10.42,
+      "wpm": 161,
+      "pitch_hz": 146.9,
+      "range_st": 17.5,
+      "level_db": -19.5,
+      "peak_dbfs": -3.6,
+      "edge": [
+        0.03,
+        0.023
+      ],
+      "pauses": [
+        {
+          "t": 1.09,
+          "len": 0.73,
+          "after": "part.",
+          "kind": "punct"
+        },
+        {
+          "t": 2.83,
+          "len": 0.46,
+          "after": "bottles,",
+          "kind": "punct"
+        },
+        {
+          "t": 6.15,
+          "len": 0.69,
+          "after": "tap.",
+          "kind": "punct"
+        },
+        {
+          "t": 8.09,
+          "len": 0.36,
+          "after": "there,",
+          "kind": "punct"
+        }
+      ],
+      "heard": "But here's the best part. On glass bottles, that 57 is where Heinz says to tap. One firm tap there, and the ketchup comes out way easier.",
+      "word_errors": 0,
+      "flags": []
+    },
+    {
+      "id": "L13",
+      "speaker": "kip",
+      "delivery": "stunned",
+      "text": "I've been slapping the *bottom* my whole life.",
+      "dur": 2.69,
+      "wpm": 179,
+      "pitch_hz": 115.9,
+      "range_st": 8.3,
+      "level_db": -18.8,
+      "peak_dbfs": -2.5,
+      "edge": [
+        0.03,
+        0.065
+      ],
+      "pauses": [],
+      "heard": "I've been slapping the bottom my whole life.",
+      "word_errors": 0,
+      "flags": []
+    },
+    {
+      "id": "L14",
+      "speaker": "kip",
+      "delivery": "curious",
+      "text": "Okay, but seriously... why {57|fifty-seven}? Drop your theory in the *comments*.",
+      "dur": 4.8,
+      "wpm": 150,
+      "pitch_hz": 124.2,
+      "range_st": 13.6,
+      "level_db": -19.2,
+      "peak_dbfs": -1.4,
+      "edge": [
+        0.03,
+        0.068
+      ],
+      "pauses": [
+        {
+          "t": 1.31,
+          "len": 0.23,
+          "after": "seriously...",
+          "kind": "punct"
+        },
+        {
+          "t": 2.69,
+          "len": 0.29,
+          "after": "57?",
+          "kind": "punct"
+        }
+      ],
+      "heard": "Ok but seriously, why 57, drop your theory in the comments.",
+      "word_errors": 0,
+      "flags": []
+    }
+  ],
+  "gaps": [
+    {
+      "between": "L01-L02",
+      "silence": 0.26,
+      "same_speaker": true,
+      "flags": []
+    },
+    {
+      "between": "L02-L03",
+      "silence": 0.28,
+      "same_speaker": false,
+      "flags": []
+    },
+    {
+      "between": "L03-L04",
+      "silence": 0.25,
+      "same_speaker": false,
+      "flags": []
+    },
+    {
+      "between": "L04-L05",
+      "silence": 0.24,
+      "same_speaker": false,
+      "flags": []
+    },
+    {
+      "between": "L05-L06",
+      "silence": 0.26,
+      "same_speaker": true,
+      "flags": []
+    },
+    {
+      "between": "L06-L07",
+      "silence": 0.2,
+      "same_speaker": false,
+      "flags": []
+    },
+    {
+      "between": "L07-L08",
+      "silence": 0.26,
+      "same_speaker": false,
+      "flags": []
+    },
+    {
+      "between": "L08-L09",
+      "silence": 0.26,
+      "same_speaker": false,
+      "flags": []
+    },
+    {
+      "between": "L09-L10",
+      "silence": 0.28,
+      "same_speaker": false,
+      "flags": []
+    },
+    {
+      "between": "L10-L11",
+      "silence": 0.27,
+      "same_speaker": false,
+      "flags": []
+    },
+    {
+      "between": "L11-L12",
+      "silence": 0.26,
+      "same_speaker": false,
+      "flags": []
+    },
+    {
+      "between": "L12-L13",
+      "silence": 0.21,
+      "same_speaker": false,
+      "flags": []
+    },
+    {
+      "between": "L13-L14",
+      "silence": 0.26,
+      "same_speaker": true,
+      "flags": []
+    }
+  ]
+}

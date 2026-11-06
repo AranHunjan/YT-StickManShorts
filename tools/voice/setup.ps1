@@ -42,7 +42,8 @@ $py = New-Env "chatterbox"
 Invoke-Step "chatterbox: PyTorch (CUDA)" { uv pip install --python $py torch==2.6.0 torchaudio==2.6.0 --index-url $torchIndex }
 # setuptools<81: Chatterbox's watermark library still imports pkg_resources,
 # which uv environments don't include and newer setuptools no longer ship.
-Invoke-Step "chatterbox: packages" { uv pip install --python $py chatterbox-tts==0.1.7 "setuptools<81" faster-whisper }
+# praat-parselmouth: the voice-quality checks (jitter, shimmer, HNR) in quality.py and check_audio.py.
+Invoke-Step "chatterbox: packages" { uv pip install --python $py chatterbox-tts==0.1.7 "setuptools<81" faster-whisper praat-parselmouth }
 
 $py = New-Env "qwen"
 Invoke-Step "qwen: PyTorch (CUDA)" { uv pip install --python $py torch==2.6.0 torchaudio==2.6.0 --index-url $torchIndex }

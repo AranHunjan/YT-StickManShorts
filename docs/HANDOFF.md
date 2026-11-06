@@ -60,8 +60,15 @@ Note: the setup and pipeline were only tested on Linux CPU, so the first Windows
    `final.mp4` is gitignored; rebuild it locally.
 4. Upload using `episodes/NNN/upload.md` and docs/PUBLISHING.md:
    YouTube Studio, Meta Business Suite (Instagram + Facebook in one go), TikTok Studio.
-5. Remotion composition ids: register each episode in `packages/animator/src/Root.tsx` (`Ep001`, ...).
-   Props live in `src/props/`.
+5. Remotion composition ids (`Ep001`, ...) are registered automatically by `tools/episode/register.py`
+   (build.py runs it) into `packages/animator/src/episodes/registry.ts`. Props live in `src/props/`.
+6. **Automated since 2026-11-06:** `/episode` runs all of this with 8 agents (fact, hooks + pre-script,
+   definition, final script, audio, audio check, animation, final check). See docs/PIPELINE.md.
+   Same day, from review feedback: listener reactions in the animation (`moves` in beats.json), a hook A/B test
+   (docs/HOOK_TEST.md), trend and random topic days, a claim ledger, episode variety tags, the owner's listening
+   score, `/performance`, and AI label research (docs/AI_LABELS.md). Open decisions: docs/OPEN_QUESTIONS.md.
+   Owner's decisions the same day: episodes run 60.3 to 61.0 s (over 1 minute for TikTok); voices stay AI, with labels on
+   TikTok and Meta (cloning the owner's voice wouldn't remove them); a scheduled task makes an episode every night at 3 AM.
 
 ## Lessons learned (don't repeat)
 - Never pitch-shift or heavily time-stretch voice references or lines: it causes audible glitchy artifacts

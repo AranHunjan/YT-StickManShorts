@@ -1,0 +1,44 @@
+{
+  "_note": "Channel-wide settings the episode pipeline reads (tools/episode/plan_next.py, the linters and the gates). Change them here, not in the code.",
+  "length": {
+    "_note": "Every new episode lasts min_seconds to cap_seconds, end hold included: just over 1 minute, so it counts as 'over 1 minute' on TikTok (owner's decision, 2026-11-06). The end hold after the last line stretches from 0.9 s up to the end_hold maximum to reach min_seconds (tools/episode/build.py); a voice track too short or too long for that is fixed with the gaps between lines. Legacy episodes keep their 0.9 s hold.",
+    "min_seconds": 60.3,
+    "cap_seconds": 61.0,
+    "end_hold": [
+      0.9,
+      1.6
+    ],
+    "words": [
+      134,
+      142
+    ],
+    "max_words": 155
+  },
+  "hook_test": {
+    "_note": "A/B test of the opening line (docs/HOOK_TEST.md). Inside the test, even episodes use 'bold' and odd ones 'question'. Set 'winner' to stop alternating.",
+    "styles": [
+      "question",
+      "bold"
+    ],
+    "from_episode": 2,
+    "until_episode": 13,
+    "winner": null
+  },
+  "topics": {
+    "_note": "Share of episodes built on something trending (the rest are random everyday objects). Episodes go in pairs so trend and random days split evenly across both hook styles.",
+    "trend_share": 0.5,
+    "trend_geos": [
+      "US",
+      "GB",
+      "CA",
+      "AU",
+      "IN"
+    ]
+  },
+  "variety": {
+    "_note": "How different each episode's shape must be from recent ones (docs/SCRIPTING.md, Variety).",
+    "compare_last": 3,
+    "block_if_same": 6,
+    "warn_if_same": 5
+  }
+}
