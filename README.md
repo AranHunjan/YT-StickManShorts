@@ -5,7 +5,7 @@ A daily animated Short about the hidden stories of everyday things, made almost 
 - **Plan and decisions:** [docs/PLAN.md](docs/PLAN.md)
 - **Characters:** [docs/CHARACTERS.md](docs/CHARACTERS.md)
 - **Voices:** [docs/VOICE.md](docs/VOICE.md)
-- **Channel setup:** [docs/CHANNEL.md](docs/CHANNEL.md)
+- **Account setup (YouTube, Instagram, Facebook, TikTok):** [docs/CHANNEL.md](docs/CHANNEL.md)
 - **Posting to YouTube, Instagram, Facebook and TikTok:** [docs/PUBLISHING.md](docs/PUBLISHING.md)
 
 ## Making an episode (Windows, from the repo root)

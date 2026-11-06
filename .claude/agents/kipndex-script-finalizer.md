@@ -36,8 +36,12 @@ Copy episode 001's layout exactly:
   - description: a one-line hook that doesn't spoil the answer, then `Sources:` with every link from `fact.md`'s source links (numbered, with the publication name), then the channel line ("Kip is sure he knows everything. Dex has the receipts. A new Short every day."), then hashtags starting with `#shorts`;
   - settings line: Made for kids: **No**. Category: **Education**. Altered or synthetic content: **No** (stylized animation).
 - **Instagram + Facebook Reels**: a caption, and a first comment with the sources.
-- **Instagram + Facebook**: the settings line `AI label: **on**` (Meta requires it for realistic-sounding AI voices; docs/AI_LABELS.md).
+- **Instagram + Facebook** (one section with the shared caption; they're posted separately, `docs/PUBLISHING.md`): the settings line `AI label: **on**` (Meta requires it for realistic-sounding AI voices; docs/AI_LABELS.md).
 - **TikTok**: a caption, a first comment, and `AI-generated content label: **on**` (TikTok requires it for realistic AI audio).
+- **The extras** (`docs/CHANNEL.md`, "Every upload"):
+  - under the file line: `cover.jpg` (the cover on Instagram and TikTok) and `captions.srt` (subtitles for YouTube and Facebook). The build makes both;
+  - YouTube: a **pinned comment** (a question that invites theories, or a fun extra fact that's in `fact.md`), the **related video** (the previous episode), and the **playlist** (Kitchen & Food, Around the House, Tech & Gadgets or Out & About);
+  - Instagram + Facebook: `Cover: upload cover.jpg`; TikTok: `Cover: the frame at about N s` (the time `tools/episode/upload_files.py` prints).
 - `**File:** \`episodes/NNN/final.mp4\``
 
 No em dashes and no placeholders.

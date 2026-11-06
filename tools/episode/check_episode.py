@@ -166,6 +166,9 @@ def main():
         if f"episodes/{ep.name}/final.mp4" not in text:
             warn.append(f"upload.md should name the file episodes/{ep.name}/final.mp4")
 
+    for extra, use in (("captions.srt", "subtitles"), ("cover.jpg", "the cover")):
+        if not (ep / extra).exists():
+            warn.append(f"no {extra} ({use} for the uploads): run tools/episode/upload_files.py {int(ep.name)}")
     sheet = listening.scores(ep)
     if sheet is None:
         warn.append("no listening.md yet: run tools/episode/listening.py, then the owner listens and scores it")

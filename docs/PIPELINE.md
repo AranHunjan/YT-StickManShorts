@@ -122,6 +122,7 @@ The thresholds were calibrated on episode 001. Its 14 approved lines pass with n
 | `tools/episode/register.py` | Registers every episode with Remotion (Ep001, Ep002, ...). `build.py` runs it |
 | `tools/episode/build.py N --preview` | Cues, render, mix, encode, quality gate. `--no-render` for sound-only changes. The music bed comes from `script.json` `"sound"` |
 | `tools/episode/review_frames.py N` | Frames for the visual check |
+| `tools/episode/upload_files.py N` | `captions.srt` (exact-word subtitles) and `cover.jpg` for the uploads. `build.py` runs it |
 | `tools/episode/check_episode.py N` | The final gate |
 | `tools/envs.py chatterbox` | Prints the voice environment's Python. Voice tools run with it: `$(python tools/envs.py chatterbox) tools/voice/check_audio.py episodes/002` |
 

@@ -88,6 +88,7 @@ def main():
     length = channel()["length"]
     span = ["--max", "59.5"] if ep.name in LEGACY else ["--min", f"{length['min_seconds'] - 0.1:g}", "--max", f"{length['cap_seconds'] + 0.1:g}"]
     run([py, SKILL / "check_short.py", ep / "final.mp4"] + span)
+    run([py, ROOT / "tools" / "episode" / "upload_files.py", ep])  # captions.srt and cover.jpg for the uploads
     # Fingerprint what this video was built from, so check_episode.py can tell if it's stale.
     (ep / "review").mkdir(exist_ok=True)
     (ep / "review" / "build.json").write_text(json.dumps({"inputs": inputs_sha1(ep)}, indent=2))
